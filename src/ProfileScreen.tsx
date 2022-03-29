@@ -15,6 +15,10 @@ export type accountScreenProp = NativeStackNavigationProp<
   RootStackParamList,
   'Account'
 >;
+export type orderHistoryScreenProp = NativeStackNavigationProp<
+  RootStackParamList,
+  'OrderHistory'
+>;
 
 const ProfileScreen = ({route, navigation}: any) => {
     const {user_id} = route.params;
@@ -22,6 +26,7 @@ const ProfileScreen = ({route, navigation}: any) => {
 
   const user = getUserById(user_id, users);
   const navigateAccount = useNavigation<accountScreenProp>();
+  const navigateOrderHistory = useNavigation<orderHistoryScreenProp>();
 
   return (
     <View style={tw`flex-1`}>
@@ -32,13 +37,17 @@ const ProfileScreen = ({route, navigation}: any) => {
         </View>
       </TouchableOpacity>
       <TouchableOpacity
-        onPress={() => navigateAccount.navigate('Account', {user_id: user_id})}>
+        onPress={() =>
+          navigateOrderHistory.navigate('OrderHistory', {user_id: user_id})
+        }>
         <View style={tw`h-50px  text-lg justify-center pl-5`}>
           <Text style={tw`text-xl font-bold`}>Booking History</Text>
         </View>
       </TouchableOpacity>
       <TouchableOpacity
-        onPress={() => navigateAccount.navigate('Subscribe', {user_id: user_id})}>
+        onPress={() =>
+          navigateAccount.navigate('Subscribe', {user_id: user_id})
+        }>
         <View style={tw`h-50px  text-lg justify-center pl-5`}>
           <Text style={tw`text-xl font-bold`}>Subscribe</Text>
         </View>

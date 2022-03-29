@@ -37,6 +37,7 @@ import type {NativeStackScreenProps} from '@react-navigation/native-stack';
 import DetailsScreen from './src/DetailsScreen';
 import ProfileScreen from './src/ProfileScreen';
 import AccountScreen from './src/AccountScreen';
+import OrderHistoryScreen from './src/OrderHistoryScreen';
 
 
 export type RootStackParamList = {
@@ -45,6 +46,7 @@ export type RootStackParamList = {
   Details: {booking_id: number; user_id: number};
   Profile: {user_id: number};
   Account: {user_id: number};
+  OrderHistory: {user_id: number};
 };
 
 type Props = NativeStackScreenProps<RootStackParamList, 'Subscribe'>;
@@ -79,6 +81,13 @@ const App = () => {
         <RootStack.Screen
           name="Account"
           component={AccountScreen}
+          options={{
+            animation: 'slide_from_left',
+          }}
+        />
+        <RootStack.Screen
+          name="OrderHistory"
+          component={OrderHistoryScreen}
           options={{
             animation: 'slide_from_left',
           }}

@@ -2,7 +2,7 @@ import {Alert, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import React from 'react';
 import {bookings} from './HomeScreen';
 import { useDispatch, useSelector } from 'react-redux';
-import {completeUserBooking, selectUsers} from './features/userSlice';
+import {completeUserBooking, selectUsers, User} from './features/userSlice';
 import { getUserById } from './ProfileScreen';
 import tw from 'twrnc'
 
@@ -14,7 +14,7 @@ const DetailsScreen = ({route, navigation}: any) => {
   const {booking_id, user_id} = route.params;
   const booking = getBookingById(booking_id)!;
   const users = useSelector(selectUsers)
-  const user = getUserById(user_id, users)
+  const user: User = getUserById(user_id, users)
 
   const dispatch = useDispatch()
 
@@ -24,14 +24,14 @@ const DetailsScreen = ({route, navigation}: any) => {
         {booking?.vendor_name}
       </Text>
       <Text style={tw`font-bold text-xl`}>
-        BHD{user.is_subscribed ? booking?.member_price : booking?.price}
+        BHD{user.is_subscribed && user.purchases_count <= 4 ? booking?.member_price : booking?.price}
       </Text>
       <TouchableOpacity
         onPress={
           () => {
             dispatch(completeUserBooking({user: user, booking: booking}));
             Alert.alert('Booking Successful!', '', [
-              {text: 'OK', onPress: () => navigation.navigate("Account", {user_id:user.id}) },
+              {text: 'OK', onPress: () => navigation.navigate("OrderHistory", {user_id:user.id}) },
             ]);
           }
         }

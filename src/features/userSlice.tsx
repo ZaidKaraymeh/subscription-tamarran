@@ -15,6 +15,7 @@ export type SubscribeAction = {
 }
 
 export type OrderHistory = {
+  id: number;
   vendor_name: string;
   price: number;
   user_id: number;
@@ -29,7 +30,7 @@ export type User = {
   email: string;
   is_subscribed: boolean;
   purchases_count: number;
-  order_histroy: Booking[];
+  order_histroy: OrderHistory[];
   user_type: 'vendor' | 'customer';
 }
 export type Booking = {
@@ -87,14 +88,22 @@ export const usersSlice = createSlice({
     completeUserBooking: (state, action: PayloadAction<BookingAction>) => {
       const {user, booking} = action.payload;
       const index = state.users.findIndex(x => x.id == user.id)
+      const order: OrderHistory = {
+        id: Math.floor(Math.random() * 9999999),
+        vendor_name: booking.vendor_name,
+        price: user.is_subscribed && user.purchases_count <= 4 ? booking.member_price : booking.price,
+        user_id: user.id,
+        is_user_subscribed: user.is_subscribed,
+      }
       const user_new: User = {
         id: user.id,
         username: user.username,
         email: user.email,
-        purchases_count: user.purchases_count + 1,
+        purchases_count: user.is_subscribed ? user.purchases_count + 1 : user.purchases_count,
         is_subscribed: user.is_subscribed,
         user_type: user.user_type,
-        order_histroy: [...user.order_histroy, booking],
+
+        order_histroy: [order, ...user.order_histroy],
       };
       state.users[index]  = user_new
     },
