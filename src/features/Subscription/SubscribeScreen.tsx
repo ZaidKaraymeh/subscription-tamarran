@@ -3,7 +3,7 @@ import React, { Fragment } from 'react'
 import tw from 'twrnc'
 import { useDispatch, useSelector } from 'react-redux'
 import { activateUserSubscription, selectUsers } from '../userSlice'
-import { getUserById } from '../../ProfileScreen'
+import { getUserById } from '../userUtilities'
 
 
 type Props = {}
@@ -80,8 +80,7 @@ const vendors = [
 const SubscribeScreen = ({route, navigation}: any) => {
   const dispatch = useDispatch();
   const {user_id} = route.params;
-  const users = useSelector(selectUsers);
-  const user = getUserById(user_id, users);
+  const user = getUserById(user_id);
   return (
     <ScrollView style={tw`flex-1 bg-white`}>
       <View style={tw`flex-1 flex-col items-center bg-white`}>
@@ -121,14 +120,26 @@ const SubscribeScreen = ({route, navigation}: any) => {
               <Text style={tw`text-2xl font-bold  `}>Gyms Include: </Text>
               <View style={tw`border-b border-lime-700 my-2`}></View>
               {gyms.map((gym) => {
-                return <Text style={tw`text-xl`}>*{gym.name}</Text>;
+                return (
+                  <Text
+                    key={Math.floor(Math.random() * 9999999)}
+                    style={tw`text-xl`}>
+                    *{gym.name}
+                  </Text>
+                );
               })}
             </View>
             <View style={tw`flex-1 flex-col w-80 pb-10 `}>
               <Text style={tw`text-2xl font-bold  `}>Vendors Include: </Text>
               <View style={tw`border-b border-lime-700 my-2`}></View>
               {vendors.map((vendor) => {
-                return <Text style={tw`text-xl`}>*{vendor.name}</Text>;
+                return (
+                  <Text
+                    key={Math.floor(Math.random() * 9999999)}
+                    style={tw`text-xl`}>
+                    *{vendor.name}
+                  </Text>
+                );
               })}
             </View>
           </Fragment>

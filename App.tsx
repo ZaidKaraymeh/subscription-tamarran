@@ -35,18 +35,20 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import HomeScreen from './src/HomeScreen';
 import type {NativeStackScreenProps} from '@react-navigation/native-stack';
 import DetailsScreen from './src/DetailsScreen';
-import ProfileScreen from './src/ProfileScreen';
+import MenuScreen from './src/MenuScreen';
 import AccountScreen from './src/AccountScreen';
 import OrderHistoryScreen from './src/OrderHistoryScreen';
+import SalesHistoryScreen from './src/SalesHistoryScreen';
 
 
 export type RootStackParamList = {
   Home: undefined;
   Subscribe: {user_id: number};
   Details: {booking_id: number; user_id: number};
-  Profile: {user_id: number};
+  Menu: {user_id: number};
   Account: {user_id: number};
   OrderHistory: {user_id: number};
+  SalesHistory: {user_id: number};
 };
 
 type Props = NativeStackScreenProps<RootStackParamList, 'Subscribe'>;
@@ -72,8 +74,8 @@ const App = () => {
         />
         <RootStack.Screen name="Details" component={DetailsScreen} />
         <RootStack.Screen
-          name="Profile"
-          component={ProfileScreen}
+          name="Menu"
+          component={MenuScreen}
           options={{
             animation: 'slide_from_left',
           }}
@@ -88,6 +90,13 @@ const App = () => {
         <RootStack.Screen
           name="OrderHistory"
           component={OrderHistoryScreen}
+          options={{
+            animation: 'slide_from_left',
+          }}
+        />
+        <RootStack.Screen
+          name="SalesHistory"
+          component={SalesHistoryScreen}
           options={{
             animation: 'slide_from_left',
           }}

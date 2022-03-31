@@ -14,9 +14,10 @@ import {SafeAreaView} from 'react-native-safe-area-context';
 import tw from 'twrnc';
 import {useNavigation} from '@react-navigation/native';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
-import {getUserById} from './features/userSlice';
+import {bookings, User} from './features/userSlice';
 import {RootStackParamList} from '../App';
 import {Booking} from './features/userSlice';
+import { getUserById } from './features/userUtilities';
 
 export type subscribeScreenProp = NativeStackNavigationProp<
   RootStackParamList,
@@ -26,54 +27,20 @@ export type detailScreenProp = NativeStackNavigationProp<
   RootStackParamList,
   'Details'
 >;
-export type profileScreenProp = NativeStackNavigationProp<
+export type menuScreenProp = NativeStackNavigationProp<
   RootStackParamList,
-  'Profile'
+  'Menu'
 >;
 type Props = {};
 
-interface BookingsInterface {
-  bookings: Booking[]
-}
 
-export const bookings:BookingsInterface ={
-    bookings: [
-      {
-        id: 1,
-        vendor_name: 'Busaiteen Football Club',
-        price: 25,
-        member_price: 20,
-        stars: 5,
-        location: 'Busaiteen',
-        timing: "None",
-      },
-      {
-        id: 2,
-        vendor_name: 'CrossFit Gym',
-        price: 35,
-        member_price: 20,
-        stars: 3,
-        location: 'Riffa',
-        timing: "8:00-9:30",
-      },
-      {
-        id: 3,
-        vendor_name: 'Batelco Gym',
-        price: 20,
-        member_price: 10,
-        stars: 4,
-        location: 'Hamala',
-        timing: "None",
-      },
-    ]
-} 
 
 const HomeScreen = (props: Props) => {
   const navigateSubscribe = useNavigation<subscribeScreenProp>();
   const navigateDetails = useNavigation<detailScreenProp>();
-  const navigateProfile = useNavigation<profileScreenProp>();
+  const navigateMenu = useNavigation<menuScreenProp>();
 
-  const user = getUserById(2);
+  const user: User = getUserById(2);
 
   return (
     <ScrollView style={tw`flex-1 bg-white`}>
@@ -83,7 +50,7 @@ const HomeScreen = (props: Props) => {
             onPress={() => navigateSubscribe.navigate('Subscribe', {user_id: user.id})}>
             <Text
               onPress={() =>
-                navigateProfile.navigate('Profile', {user_id: user.id})
+                navigateMenu.navigate('Menu', {user_id: user.id})
               }>
               Menu
             </Text>
@@ -96,7 +63,7 @@ const HomeScreen = (props: Props) => {
           </View>
         </View>
         <View style={tw` w-20 h-75px justify-center items-center`}>
-          <Text></Text>
+          <Text> {user.user_type} {"\n"} id:{user.id} </Text>
         </View>
       </View>
       {bookings.bookings.map((booking) => {
