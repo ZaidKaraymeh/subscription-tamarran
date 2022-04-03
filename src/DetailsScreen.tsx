@@ -19,12 +19,14 @@ const DetailsScreen = ({route, navigation}: any) => {
   return (
     <View style={tw`flex-1 px-2 py-1 bg-white  `}>
       <Text style={tw`font-bold text-xl`}>{booking?.vendor_name}</Text>
-      <Text style={tw`font-bold text-xl`}>
-        BHD
-        {user.is_subscribed && user.purchases_count <= 4
-          ? booking?.member_price
-          : booking?.price}
-      </Text>
+      {booking.timing != "None" &&
+        <Text style={tw`font-bold text-xl`}>
+          BHD
+          {user.is_subscribed && user.purchases_count <= 4
+            ? booking?.member_price
+            : booking?.price}
+        </Text>
+      }
       <Text style={tw`font-bold text-xl`}>
         Timing:  
         {booking.timing != "None" 
