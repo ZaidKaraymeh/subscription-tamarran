@@ -26,7 +26,7 @@ const SalesHistoryScreen = ({route, navigation}: any) => {
               {' '}
               User Subscribed: {getUserById(booking.user_id).is_subscribed ? "Yes" : "No"}
             </Text>
-            {booking.timing ? (
+            {booking.timing != "None" ? (
               <Text style={tw`ml-2 text-lg`}> Timing: {booking.timing}</Text>
             ) : (
               <Text style={tw`ml-2 text-lg`}> Timing: N/A</Text>

@@ -44,6 +44,16 @@ export const bookings: BookingsInterface = {
       location: 'Hamala',
       timing: 'None',
     },
+    {
+      id: 4,
+      vendor_user_id: 1,
+      vendor_name: 'Personal Trainer',
+      price: 55,
+      member_price: 37,
+      stars: 4,
+      location: 'Manama',
+      timing: '12:00-13:30',
+    },
   ],
 }; 
 
@@ -152,6 +162,7 @@ export const usersSlice = createSlice({
         price: user.is_subscribed && user.purchases_count <= 4 ? booking.member_price : booking.price,
         user_id: user.id,
         is_user_subscribed: user.is_subscribed,
+        timing: booking.timing
       }
       const user_new: User = {
         id: user.id,
@@ -162,6 +173,7 @@ export const usersSlice = createSlice({
         user_type: user.user_type,
         
         order_histroy: [order, ...user.order_histroy],
+        
       };
       const vendor_user_index = state.users.findIndex(x => x.id == booking.vendor_user_id)
       const vendor_user = state.users.find(x => x.id == booking.vendor_user_id)!
@@ -170,6 +182,7 @@ export const usersSlice = createSlice({
         vendor_name: booking.vendor_name,
         price: user.is_subscribed && user.purchases_count <= 4 ? booking.member_price : booking.price,
         user_id: user.id,
+        timing: booking.timing
       }
       const vendor_user_new: User = {
         id: vendor_user.id,

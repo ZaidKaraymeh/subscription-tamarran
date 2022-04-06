@@ -24,7 +24,7 @@ const OrderHistoryScreen = ({route, navigation}: any) => {
             <Text style={tw`ml-2 text-lg`}>
               {" "}Price: BHD{booking.price}
             </Text>
-            {booking.timing?
+            {booking.timing != "None" ?
               <Text style={tw`ml-2 text-lg`}>
                 {" "}Timing: {booking.timing}
               </Text>

@@ -1,5 +1,5 @@
 import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
-import React from 'react';
+import React, { Fragment } from 'react';
 import tw from 'twrnc';
 import {useSelector} from 'react-redux';
 import {selectUsers, User} from './features/userSlice';
@@ -38,34 +38,45 @@ const MenuScreen = ({route, navigation}: any) => {
           <Text style={tw`text-xl font-bold`}>Account</Text>
         </View>
       </TouchableOpacity>
-      {user.user_type == "customer"?
-        <TouchableOpacity
-          onPress={() =>
-            navigateOrderHistory.navigate('OrderHistory', {user_id: user_id})
-          }>
-          <View style={tw`h-50px  text-lg justify-center pl-5`}>
-            <Text style={tw`text-xl font-bold`}>Booking History</Text>
-          </View>
-        </TouchableOpacity>
-        :
-        <TouchableOpacity
-          onPress={() =>
-            navigateSalesHistory.navigate('SalesHistory', {user_id: user_id})
-          }>
-          <View style={tw`h-50px  text-lg justify-center pl-5`}>
-            <Text style={tw`text-xl font-bold`}>Sales History</Text>
-          </View>
-        </TouchableOpacity>
-      
-      }
-      <TouchableOpacity
-        onPress={() =>
-          navigateAccount.navigate('Subscribe', {user_id: user_id})
-        }>
-        <View style={tw`h-50px  text-lg justify-center pl-5`}>
-          <Text style={tw`text-xl font-bold`}>Subscribe</Text>
-        </View>
-      </TouchableOpacity>
+      {user.user_type == 'customer' ? (
+        <Fragment>
+          <TouchableOpacity
+            onPress={() =>
+              navigateOrderHistory.navigate('OrderHistory', {user_id: user_id})
+            }>
+            <View style={tw`h-50px  text-lg justify-center pl-5`}>
+              <Text style={tw`text-xl font-bold`}>Booking History</Text>
+            </View>
+          </TouchableOpacity>
+          <TouchableOpacity
+            onPress={() =>
+              navigateAccount.navigate('Subscribe', {user_id: user_id})
+            }>
+            <View style={tw`h-50px  text-lg justify-center pl-5`}>
+              <Text style={tw`text-xl font-bold`}>Subscribe</Text>
+            </View>
+          </TouchableOpacity>
+        </Fragment>
+      ) : (
+        <Fragment>
+          <TouchableOpacity
+            onPress={() =>
+              navigateSalesHistory.navigate('SalesHistory', {user_id: user_id})
+            }>
+            <View style={tw`h-50px  text-lg justify-center pl-5`}>
+              <Text style={tw`text-xl font-bold`}>Sales History</Text>
+            </View>
+          </TouchableOpacity>
+          <TouchableOpacity
+            onPress={() =>
+              navigateSalesHistory.navigate('SalesHistory', {user_id: user_id})
+            }>
+            <View style={tw`h-50px  text-lg justify-center pl-5`}>
+              <Text style={tw`text-xl font-bold`}>Scan QR Code</Text>
+            </View>
+          </TouchableOpacity>
+        </Fragment>
+      )}
     </View>
   );
 };
