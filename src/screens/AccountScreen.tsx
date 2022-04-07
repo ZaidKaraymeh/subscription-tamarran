@@ -1,9 +1,9 @@
 import {StyleSheet, Text, View} from 'react-native';
 import React, { Fragment } from 'react';
 import {useSelector} from 'react-redux';
-import {Booking, selectUsers, User} from './features/userSlice';
+import {Booking, selectUsers, User} from '../features/userSlice';
 import tw from 'twrnc'
-import { getUserById } from './features/userUtilities';
+import { getUserById } from '../features/userUtilities';
 
 type Props = {};
 
