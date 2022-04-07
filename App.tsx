@@ -28,28 +28,20 @@ import {
 import LearnReduxLinks from './src/components/LearnReduxLinks';
 import Header from './src/components/Header';
 import {Counter} from './src/features/counter/Counter';
-import SubscribeScreen from './src/features/Subscription/SubscribeScreen';
+import SubscribeScreen from './src/screens/SubscribeScreen';
 import tw from 'twrnc';
 import {NavigationContainer, useNavigation} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import HomeScreen from './src/HomeScreen';
+import HomeScreen from './src/screens/HomeScreen';
 import type {NativeStackScreenProps} from '@react-navigation/native-stack';
-import DetailsScreen from './src/DetailsScreen';
-import MenuScreen from './src/MenuScreen';
-import AccountScreen from './src/AccountScreen';
-import OrderHistoryScreen from './src/OrderHistoryScreen';
-import SalesHistoryScreen from './src/SalesHistoryScreen';
+import DetailsScreen from './src/screens/DetailsScreen';
+import MenuScreen from './src/screens/MenuScreen';
+import AccountScreen from './src/screens/AccountScreen';
+import OrderHistoryScreen from './src/screens/OrderHistoryScreen';
+import SalesHistoryScreen from './src/screens/SalesHistoryScreen';
+import {RootStackParamList} from './src/types';
 
 
-export type RootStackParamList = {
-  Home: undefined;
-  Subscribe: {user_id: number};
-  Details: {booking_id: number; user_id: number};
-  Menu: {user_id: number};
-  Account: {user_id: number};
-  OrderHistory: {user_id: number};
-  SalesHistory: {user_id: number};
-};
 
 type Props = NativeStackScreenProps<RootStackParamList, 'Subscribe'>;
 const RootStack = createNativeStackNavigator<RootStackParamList>();

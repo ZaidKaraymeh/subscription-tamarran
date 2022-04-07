@@ -2,11 +2,11 @@ import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import React, { Fragment } from 'react';
 import tw from 'twrnc';
 import {useSelector} from 'react-redux';
-import {selectUsers, User} from './features/userSlice';
+import {selectUsers, User} from '../features/userSlice';
 import {useNavigation} from '@react-navigation/native';
-import {RootStackParamList} from '../App';
+import {RootStackParamList} from '../types';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
-import { getUserById } from './features/userUtilities';
+import { getUserById } from '../features/userUtilities';
 
 
 export type accountScreenProp = NativeStackNavigationProp<

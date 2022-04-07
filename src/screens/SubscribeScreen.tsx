@@ -2,8 +2,8 @@ import { StyleSheet, Text, TouchableOpacity, View, Image, ImageBackground, Scrol
 import React, { Fragment } from 'react'
 import tw from 'twrnc'
 import { useDispatch, useSelector } from 'react-redux'
-import { activateUserSubscription, selectUsers } from '../userSlice'
-import { getUserById } from '../userUtilities'
+import { activateUserSubscription, selectUsers } from '../features/userSlice'
+import { getUserById } from '../features/userUtilities'
 
 
 type Props = {}

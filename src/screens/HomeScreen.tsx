@@ -9,15 +9,15 @@ import {
   View,
 } from 'react-native';
 import React from 'react';
-import SubscribeScreen from './features/Subscription/SubscribeScreen';
+import SubscribeScreen from './SubscribeScreen';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import tw from 'twrnc';
 import {useNavigation} from '@react-navigation/native';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
-import {bookings, User} from './features/userSlice';
-import {RootStackParamList} from '../App';
-import {Booking} from './features/userSlice';
-import { getUserById } from './features/userUtilities';
+import {bookings, User} from '../features/userSlice';
+import {RootStackParamList} from '../types'
+import {Booking} from '../features/userSlice';
+import { getUserById } from '../features/userUtilities';
 
 export type subscribeScreenProp = NativeStackNavigationProp<
   RootStackParamList,

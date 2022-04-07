@@ -1,9 +1,9 @@
 import {Alert, StyleSheet, Text, TouchableOpacity, View, Image} from 'react-native';
 import React, { Fragment, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import {bookings, completeUserBooking, selectUsers, User} from './features/userSlice';
+import {bookings, completeUserBooking, selectUsers, User} from '../features/userSlice';
 import tw from 'twrnc'
-import { getUserById } from './features/userUtilities';
+import { getUserById } from '../features/userUtilities';
 import QRCode from 'react-native-qrcode-svg';
 
 

@@ -1,9 +1,9 @@
 import {ScrollView, StyleSheet, Text, View} from 'react-native';
 import React, {Fragment} from 'react';
-import {Booking, OrderHistory, Sales, selectUsers, User} from './features/userSlice';
+import {Booking, OrderHistory, Sales, selectUsers, User} from '../features/userSlice';
 import {useSelector} from 'react-redux';
 import tw from 'twrnc';
-import {getUserById} from './features/userUtilities';
+import {getUserById} from '../features/userUtilities';
 type Props = {};
 
 const SalesHistoryScreen = ({route, navigation}: any) => {
