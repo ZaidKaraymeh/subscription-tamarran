@@ -1,6 +1,7 @@
 import {createAsyncThunk, createSlice, PayloadAction} from '@reduxjs/toolkit';
 import { useSelector } from 'react-redux';
 import {RootState} from '../app/store';
+import { Booking, BookingAction, OrderHistory, Sales, SubscribeAction, User } from '../types';
 import { getUserById } from './userUtilities';
 
 // interface CounterState {
@@ -57,50 +58,7 @@ export const bookings: BookingsInterface = {
   ],
 }; 
 
-export type BookingAction = {
-  booking: Booking,
-  user: User
-}
-export type SubscribeAction = {
-  user: User
-}
 
-export type OrderHistory = {
-  id: number;
-  vendor_name: string;
-  price: number;
-  user_id: number;
-  is_user_subscribed: boolean;
-  timing?: string;
-};
-export type Sales = {
-  id: number;
-  vendor_name: string;
-  price: number;
-  user_id: number;
-  timing?: string;
-};
-
-export type User = {
-  id: number;
-  username: string;
-  email: string;
-  is_subscribed: boolean;
-  purchases_count: number;
-  order_histroy: OrderHistory[];
-  user_type: 'vendor' | 'customer';
-  sales?: Sales[];
-}
-export type Booking = {
-  id: number;
-  vendor_name: string;
-  vendor_user_id: number;
-  price: number;
-  stars: number;
-  member_price: number;
-  location: string;
-  timing?: string;
-};
 interface Users {
   users: User[];
 }

@@ -4,6 +4,7 @@ import tw from 'twrnc'
 import { useDispatch, useSelector } from 'react-redux'
 import { activateUserSubscription, selectUsers } from '../features/userSlice'
 import { getUserById } from '../features/userUtilities'
+import Header from '../components/Header'
 
 
 type Props = {}
@@ -83,6 +84,7 @@ const SubscribeScreen = ({route, navigation}: any) => {
   const user = getUserById(user_id);
   return (
     <ScrollView style={tw`flex-1 bg-white`}>
+      <Header route={route} navigation={navigation} />
       <View style={tw`flex-1 flex-col items-center bg-white`}>
         <View style={tw``}>
           <Text style={tw`text-4xl my-5 mt-15 py-2 font-bold`}>

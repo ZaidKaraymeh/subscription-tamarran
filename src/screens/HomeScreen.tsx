@@ -14,23 +14,12 @@ import {SafeAreaView} from 'react-native-safe-area-context';
 import tw from 'twrnc';
 import {useNavigation} from '@react-navigation/native';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
-import {bookings, User} from '../features/userSlice';
-import {RootStackParamList} from '../types'
-import {Booking} from '../features/userSlice';
+import {bookings} from '../features/userSlice';
+import {RootStackParamList, User} from '../types'
 import { getUserById } from '../features/userUtilities';
 
-export type subscribeScreenProp = NativeStackNavigationProp<
-  RootStackParamList,
-  'Subscribe'
->;
-export type detailScreenProp = NativeStackNavigationProp<
-  RootStackParamList,
-  'Details'
->;
-export type menuScreenProp = NativeStackNavigationProp<
-  RootStackParamList,
-  'Menu'
->;
+import { subscribeScreenProp, detailScreenProp, menuScreenProp } from '../types'
+
 type Props = {};
 
 
@@ -40,58 +29,86 @@ const HomeScreen = (props: Props) => {
   const navigateDetails = useNavigation<detailScreenProp>();
   const navigateMenu = useNavigation<menuScreenProp>();
 
-  const user: User = getUserById(2);
+  const user: User = getUserById(1);
 
   return (
-    <ScrollView style={tw`flex-1 bg-white`}>
-      <View style={tw`flex-row h-75px bg-green-700 mb-2`}>
-        <View style={tw` w-20 h-75px justify-center items-center`}>
+    <ScrollView style={[tw`flex-1 bg-white`, {backgroundColor: '#FBF8F1'}]}>
+      <View
+        style={[
+          tw`flex-row h-75px mb-2`,
+          {
+            backgroundColor: '#A2B38B',
+            shadowColor: 'black',
+            shadowOpacity: 0.26,
+            shadowOffset: {width: 0, height: 2},
+            shadowRadius: 10,
+            elevation: 10,
+          },
+        ]}>
+        <View style={tw` flex-1 h-75px justify-center items-center`}>
           <TouchableOpacity
-            onPress={() => navigateSubscribe.navigate('Subscribe', {user_id: user.id})}>
+            onPress={() =>
+              navigateSubscribe.navigate('Subscribe', {user_id: user.id})
+            }>
             <Text
-              onPress={() =>
-                navigateMenu.navigate('Menu', {user_id: user.id})
-              }>
+              onPress={() => navigateMenu.navigate('Menu', {user_id: user.id})}>
               Menu
             </Text>
           </TouchableOpacity>
         </View>
-        <View style={tw` w-60 h-75px justify-center items-center`}>
+        <View style={tw` flex-3 h-75px justify-center items-center`}>
           <View
-            style={tw`bg-white h-38px border w-200px rounded-2xl justify-center px-2`}>
+            style={tw`bg-white h-38px border w-65 rounded-2xl justify-center px-2`}>
             <Text>Try "Gym"</Text>
           </View>
         </View>
-        <View style={tw` w-20 h-75px justify-center items-center`}>
-          <Text> {user.user_type} {"\n"} id:{user.id} </Text>
-        </View>
+        {/* <View style={tw` flex-1 h-75px justify-center items-center`}>
+          <Text>
+            {' '}
+            {user.user_type} {'\n'} id:{user.id}{' '}
+          </Text>
+        </View> */}
       </View>
       {bookings.bookings.map((booking) => {
         return (
-          <TouchableOpacity
-            key={booking.id}
-            style={tw`border my-1 mx-3 rounded-2xl`}
-            onPress={() =>
-              navigateDetails.navigate('Details', {
-                booking_id: booking.id,
-                user_id: user.id
-              })
-            }>
-            <ImageBackground
-              source={{uri: `https://picsum.photos/id/1058/1000/1000`}}
-              style={tw`h-150px rounded-2xl  opacity-85 p-2 justify-end`}
-              imageStyle={{borderRadius: 15}}>
-              <View>
-                <Text style={tw`text-base font-bold`}>
-                  {booking.vendor_name}
+          <View style={[tw``]}>
+            <TouchableOpacity
+              key={booking.id}
+              style={[
+                tw`border mb-3 mx-3 rounded-xl`,
+                {
+                  shadowColor: 'black',
+                  shadowOpacity: 0.26,
+                  shadowOffset: {width: 0, height: 2},
+                  shadowRadius: 10,
+                  elevation: 4,
+                  backgroundColor: 'white',
+                },
+              ]}
+              onPress={() =>
+                navigateDetails.navigate('Details', {
+                  booking_id: booking.id,
+                  user_id: user.id,
+                })
+              }>
+              <ImageBackground
+                source={{
+                  uri: `https://picsum.photos/id/105${booking.id}/1000/1000`,
+                }}
+                style={tw`h-150px opacit p-2 justify-end`}
+                imageStyle={{borderRadius: 10}}></ImageBackground>
+              <View style={tw`p-2`}>
+                <Text style={tw`text-lg`}>
+                  {booking.vendor_name} - {booking.location}
                 </Text>
-                <Text style={tw`text-base font-bold`}>
-                  {booking.stars}/5 Reviews
+                <Text style={tw`text-2xl font-bold text-yellow-600 p-0 m-0  `}>
+                  {Array.from(Array(booking.stars), (e, i) => {
+                    return '* ';
+                  })}
                 </Text>
-                <Text style={tw`text-base font-bold`}>{booking.location}</Text>
               </View>
-            </ImageBackground>
-          </TouchableOpacity>
+            </TouchableOpacity>
+          </View>
         );
       })}
 

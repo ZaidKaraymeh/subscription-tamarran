@@ -25,9 +25,6 @@ import {
   DebugInstructions,
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
-import LearnReduxLinks from './src/components/LearnReduxLinks';
-import Header from './src/components/Header';
-import {Counter} from './src/features/counter/Counter';
 import SubscribeScreen from './src/screens/SubscribeScreen';
 import tw from 'twrnc';
 import {NavigationContainer, useNavigation} from '@react-navigation/native';
@@ -40,10 +37,11 @@ import AccountScreen from './src/screens/AccountScreen';
 import OrderHistoryScreen from './src/screens/OrderHistoryScreen';
 import SalesHistoryScreen from './src/screens/SalesHistoryScreen';
 import {RootStackParamList} from './src/types';
+import SettingsScreen from './src/screens/SettingsScreen';
+import VendorSettings from './src/screens/VendorSettings';
 
 
 
-type Props = NativeStackScreenProps<RootStackParamList, 'Subscribe'>;
 const RootStack = createNativeStackNavigator<RootStackParamList>();
 
 const App = () => {
@@ -62,14 +60,23 @@ const App = () => {
           component={SubscribeScreen}
           options={{
             animation: 'slide_from_right',
+            headerShown: false,
           }}
         />
-        <RootStack.Screen name="Details" component={DetailsScreen} />
+        <RootStack.Screen
+          name="Details"
+          component={DetailsScreen}
+          options={{
+            animation: 'slide_from_right',
+            headerShown: false,
+          }}
+        />
         <RootStack.Screen
           name="Menu"
           component={MenuScreen}
           options={{
             animation: 'slide_from_left',
+            headerShown: false,
           }}
         />
         <RootStack.Screen
@@ -77,6 +84,7 @@ const App = () => {
           component={AccountScreen}
           options={{
             animation: 'slide_from_left',
+            headerShown: false,
           }}
         />
         <RootStack.Screen
@@ -84,6 +92,7 @@ const App = () => {
           component={OrderHistoryScreen}
           options={{
             animation: 'slide_from_left',
+            headerShown: false,
           }}
         />
         <RootStack.Screen
@@ -91,6 +100,23 @@ const App = () => {
           component={SalesHistoryScreen}
           options={{
             animation: 'slide_from_left',
+            headerShown: false,
+          }}
+        />
+        <RootStack.Screen
+          name="Settings"
+          component={SettingsScreen}
+          options={{
+            animation: 'slide_from_left',
+            headerShown: false,
+          }}
+        />
+        <RootStack.Screen
+          name="VendorSettings"
+          component={VendorSettings}
+          options={{
+            animation: 'slide_from_left',
+            headerShown: false,
           }}
         />
       </RootStack.Navigator>

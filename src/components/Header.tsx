@@ -1,39 +1,35 @@
-/**
- * Copyright (c) Facebook, Inc. and its affiliates.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- * @format
- */
+import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import React from 'react'
+import tw from 'twrnc';
 
-'use strict';
+type Props = {}
 
-import React from 'react';
-import {Animated, StyleSheet, View} from 'react-native';
-import {useViewportUnits, useBounceAnimation} from '../app/hooks';
-
-const Header = () => {
-  const {vh} = useViewportUnits();
-  const bounce = useBounceAnimation();
-  const height = 40 * vh;
-
+const Header = (props: any) => {
+    const {route, navigation} = props
   return (
-    <View style={styles.container}>
-      <Animated.Image
-        accessibilityRole={'image'}
-        source={require('./logo.gif')}
-        style={{height, transform: [{translateY: bounce}]}}
-      />
+    <View
+      style={[
+        tw`flex-row h-50px bg-green-700`,
+        {
+          backgroundColor: '#A2B38B',
+          shadowColor: 'black',
+          shadowOpacity: 0.26,
+          shadowOffset: {width: 0, height: 2},
+          shadowRadius: 10,
+          elevation: 10,
+        },
+      ]}>
+      <View style={tw`flex-1 items-center justify-center`}>
+        <TouchableOpacity onPress={() => navigation.goBack()}>
+          <Text style={tw`text-xl pl-5`} >Back</Text>
+        </TouchableOpacity>
+      </View>
+      <View style={tw`flex-2  justify-center items-center`}></View>
+      <View style={tw`flex-2 items-center justify-center`}></View>
     </View>
   );
-};
+}
 
-const styles = StyleSheet.create({
-  container: {
-    flexDirection: 'row',
-    justifyContent: 'center',
-    backgroundColor: 'white',
-  },
-});
-export default Header;
+export default Header
+
+const styles = StyleSheet.create({})
