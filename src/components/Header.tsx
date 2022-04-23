@@ -16,7 +16,7 @@ const Header = (props: any) => {
           shadowOpacity: 0.26,
           shadowOffset: {width: 0, height: 2},
           shadowRadius: 10,
-          elevation: 10,
+          elevation: 15,
         },
       ]}>
       <View style={tw`flex-1 items-center justify-center`}>

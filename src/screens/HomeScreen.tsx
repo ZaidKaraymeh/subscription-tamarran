@@ -8,7 +8,7 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import React from 'react';
+import React, { Fragment } from 'react';
 import SubscribeScreen from './SubscribeScreen';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import tw from 'twrnc';
@@ -29,20 +29,20 @@ const HomeScreen = (props: Props) => {
   const navigateDetails = useNavigation<detailScreenProp>();
   const navigateMenu = useNavigation<menuScreenProp>();
 
-  const user: User = getUserById(1);
+  const user: User = getUserById(2);
 
   return (
-    <ScrollView style={[tw`flex-1 bg-white`, {backgroundColor: '#FBF8F1'}]}>
+    <Fragment>
       <View
         style={[
           tw`flex-row h-75px mb-2`,
           {
-            backgroundColor: '#A2B38B',
+            backgroundColor: '#3a5311',
             shadowColor: 'black',
-            shadowOpacity: 0.26,
+            shadowOpacity: 0.31,
             shadowOffset: {width: 0, height: 2},
-            shadowRadius: 10,
-            elevation: 10,
+            shadowRadius: 12,
+            elevation: 25,
           },
         ]}>
         <View style={tw` flex-1 h-75px justify-center items-center`}>
@@ -51,6 +51,7 @@ const HomeScreen = (props: Props) => {
               navigateSubscribe.navigate('Subscribe', {user_id: user.id})
             }>
             <Text
+              style={tw`text-white`}
               onPress={() => navigateMenu.navigate('Menu', {user_id: user.id})}>
               Menu
             </Text>
@@ -58,8 +59,8 @@ const HomeScreen = (props: Props) => {
         </View>
         <View style={tw` flex-3 h-75px justify-center items-center`}>
           <View
-            style={tw`bg-white h-38px border w-65 rounded-2xl justify-center px-2`}>
-            <Text>Try "Gym"</Text>
+            style={tw`bg-white h-38px  w-65 rounded-2xl  justify-center px-2`}>
+            <Text style={tw`opacity-70`}>Try "Gym"</Text>
           </View>
         </View>
         {/* <View style={tw` flex-1 h-75px justify-center items-center`}>
@@ -69,13 +70,14 @@ const HomeScreen = (props: Props) => {
           </Text>
         </View> */}
       </View>
-      {bookings.bookings.map((booking) => {
-        return (
-          <View style={[tw``]}>
+
+      <ScrollView style={[tw`flex-1 bg-white`, {backgroundColor: '#FBF8F1'}]}>
+        {bookings.bookings.map((booking) => {
+          return (
             <TouchableOpacity
               key={booking.id}
               style={[
-                tw`border mb-3 mx-3 rounded-xl`,
+                tw`border-0 mb-3 mx-3 rounded-xl`,
                 {
                   shadowColor: 'black',
                   shadowOpacity: 0.26,
@@ -95,7 +97,7 @@ const HomeScreen = (props: Props) => {
                 source={{
                   uri: `https://picsum.photos/id/105${booking.id}/1000/1000`,
                 }}
-                style={tw`h-150px opacit p-2 justify-end`}
+                style={tw`h-150px p-2 justify-end`}
                 imageStyle={{borderRadius: 10}}></ImageBackground>
               <View style={tw`p-2`}>
                 <Text style={tw`text-lg`}>
@@ -108,18 +110,18 @@ const HomeScreen = (props: Props) => {
                 </Text>
               </View>
             </TouchableOpacity>
-          </View>
-        );
-      })}
+          );
+        })}
 
-      {/* <TouchableOpacity 
+        {/* <TouchableOpacity 
         onPress={() => navigate.navigate("Subscribe")}
         style={tw`bg-green-600 rounded-2xl my-5 mx-5`}>
         <Text style={tw`text-xl p-4 my-2 text-white text-center`}>
           Become a Tamarran Pro Member
         </Text>
       </TouchableOpacity> */}
-    </ScrollView>
+      </ScrollView>
+    </Fragment>
   );
 };
 

@@ -83,7 +83,7 @@ const SubscribeScreen = ({route, navigation}: any) => {
   const {user_id} = route.params;
   const user = getUserById(user_id);
   return (
-    <ScrollView style={tw`flex-1 bg-white`}>
+    <ScrollView style={[tw`flex-1 bg-white`,]}>
       <Header route={route} navigation={navigation} />
       <View style={tw`flex-1 flex-col items-center bg-white`}>
         <View style={tw``}>
