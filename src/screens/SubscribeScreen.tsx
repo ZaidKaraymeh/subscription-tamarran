@@ -80,8 +80,7 @@ const vendors = [
 
 const SubscribeScreen = ({route, navigation}: any) => {
   const dispatch = useDispatch();
-  const {user_id} = route.params;
-  const user = getUserById(user_id);
+  const {user} = route.params;
   return (
     <ScrollView style={[tw`flex-1 bg-white`,]}>
       <Header route={route} navigation={navigation} />

@@ -8,8 +8,7 @@ import Header from '../components/Header';
 type Props = {}
 
 const OrderHistoryScreen = ({route, navigation}: any) => {
-  const {user_id} = route.params
-  const user = getUserById(user_id)
+  const {user} = route.params
   return (
     <ScrollView>
       <Header route={route} navigation={navigation} />

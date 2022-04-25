@@ -37,7 +37,7 @@ const HomeScreen = (props: Props) => {
         style={[
           tw`flex-row h-75px mb-2`,
           {
-            backgroundColor: '#3a5311',
+            backgroundColor: '#687E4A',
             shadowColor: 'black',
             shadowOpacity: 0.31,
             shadowOffset: {width: 0, height: 2},
@@ -48,11 +48,11 @@ const HomeScreen = (props: Props) => {
         <View style={tw` flex-1 h-75px justify-center items-center`}>
           <TouchableOpacity
             onPress={() =>
-              navigateSubscribe.navigate('Subscribe', {user_id: user.id})
+              navigateSubscribe.navigate('Subscribe', {user: user})
             }>
             <Text
               style={tw`text-white`}
-              onPress={() => navigateMenu.navigate('Menu', {user_id: user.id})}>
+              onPress={() => navigateMenu.navigate('Menu', {user: user})}>
               Menu
             </Text>
           </TouchableOpacity>
@@ -90,7 +90,7 @@ const HomeScreen = (props: Props) => {
               onPress={() =>
                 navigateDetails.navigate('Details', {
                   booking_id: booking.id,
-                  user_id: user.id,
+                  user: user,
                 })
               }>
               <ImageBackground

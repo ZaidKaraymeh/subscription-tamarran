@@ -2,12 +2,12 @@ import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 
 export type RootStackParamList = {
   Home: undefined;
-  Subscribe: {user_id: number};
-  Details: {booking_id: number; user_id: number};
-  Menu: {user_id: number};
-  Account: {user_id: number};
-  OrderHistory: {user_id: number};
-  SalesHistory: {user_id: number};
+  Subscribe: {user: User};
+  Details: {booking_id: number; user: User};
+  Menu: {user: User};
+  Account: {user: User};
+  OrderHistory: {user: User};
+  SalesHistory: {user: User};
   Settings: {user: User};
   VendorSettings: {user: User}
 };
@@ -59,6 +59,18 @@ export type BookingAction = {
   booking: Booking;
   user: User;
 };
+
+export type VendorSettingsAction = {
+  is_member: boolean;
+  all_access: boolean;
+  max_access: string;
+  user: User;
+}
+export type VendorSettings = {
+  is_member: boolean;
+  all_access: boolean;
+  max_access: string;
+}
 export type SubscribeAction = {
   user: User;
 };
@@ -88,11 +100,14 @@ export type User = {
   order_histroy: OrderHistory[];
   user_type: 'vendor' | 'customer';
   sales?: Sales[];
+  vendor_bookings_id?: number []
+  vendor_settings?: VendorSettings,
 };
 export type Booking = {
   id: number;
   vendor_name: string;
   vendor_user_id: number;
+  description: string;
   price: number;
   stars: number;
   member_price: number;

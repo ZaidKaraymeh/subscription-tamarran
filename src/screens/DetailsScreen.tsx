@@ -1,4 +1,4 @@
-import {Alert, StyleSheet, Text, TouchableOpacity, View, Image} from 'react-native';
+import {Alert, StyleSheet, Text, TouchableOpacity, View, Image, ScrollView} from 'react-native';
 import React, { Fragment, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {bookings, completeUserBooking, selectUsers} from '../features/userSlice';
@@ -16,75 +16,151 @@ export const getBookingById = (id: number) => {
 };
 
 const DetailsScreen = ({route, navigation}: any) => {
-  const {booking_id, user_id} = route.params;
+  const {booking_id, user} = route.params;
   const booking = getBookingById(booking_id)!;
-  const user: User = getUserById(user_id)
+  const vendor: User = getUserById(booking.vendor_user_id)
 
   const dispatch = useDispatch()
 
 
   return (
-    <View style={[tw`flex-1 bg-white`, {backgroundColor: '#FBF8F1'}]}>
+    <View style={[tw`flex-1 bg-white`, {backgroundColor: '#F7ECDE'}]}>
       <Header route={route} navigation={navigation} />
-      <View style={tw`p-2`}>
-        <Text style={tw`font-bold text-xl`}>{booking?.vendor_name}</Text>
-        <Text style={tw`font-bold text-xl`}>
-          BHD
-          {user.is_subscribed && user.purchases_count <= 4
-            ? booking?.member_price
-            : booking?.price}
-        </Text>
-        <Text style={tw`font-bold text-xl`}>
-          Timing:
-          {booking.timing != 'None' ? booking.timing : 'N/A'}
-        </Text>
-
-        {booking.timing == 'None' && user.is_subscribed ? (
-          <Text style={tw`h-0 w-0 p-0 m-0`}></Text>
-        ) : (
-          <TouchableOpacity
-            onPress={() => {
-              dispatch(completeUserBooking({user: user, booking: booking}));
-              Alert.alert('Booking Successful!', '', [
-                {
-                  text: 'OK',
-                  onPress: () =>
-                    navigation.navigate('OrderHistory', {user_id: user.id}),
-                },
-              ]);
-            }}
-            style={tw`items-center justify-center bg-green-700 h-50px rounded-2xl border`}>
-            <Text style={tw`text-white font-bold text-xl`}>Book Now</Text>
-          </TouchableOpacity>
-        )}
-
-        {/* <Text style={tw`font-bold text-xl text-center`}>
-          {user.is_subscribed && user.purchases_count <= 4
-            ? 'Subscription Benefits Applied Automatically!'
-            : ''}
-          </Text> */}
-
-        <View style={tw`items-center`}>
-          {user.is_subscribed ? (
+      <ScrollView style={tw``}>
+        <View style={tw`flex-1`}>
+          <View
+            style={[
+              tw`h-100 justify-center items-center`,
+              {backgroundColor: '#F7ECDE'},
+            ]}>
+            <View
+              style={[
+                tw`h-80 w-60 border rounded-3xl`,
+                {backgroundColor: '#54BAB9'},
+              ]}></View>
+          </View>
+        </View>
+        <View
+          style={[
+            tw`px-5, pt-7`,
+            {backgroundColor: '#FBF8F1', borderRadius: 40},
+          ]}>
+          <Text style={tw`text-2xl font-bold text-center`}>
+            {booking?.vendor_name}
+          </Text>
+          <Text style={tw`text-xl opacity-60 text-center mt-1 text-black`}>
+            {booking.location}
+          </Text>
+          <Text style={tw`text-2xl font-bold text-yellow-600 text-center mt-2`}>
+            {Array.from(Array(booking.stars), (e, i) => {
+              return '* ';
+            })}
+          </Text>
+          {vendor.vendor_settings?.is_member ? (
             <Fragment>
-              <Text style={tw`text-lg text-center pt-4`}>
-                Subscription Active and benefits are applied automatically for
-                online bookings, show this QR Code to vendor for out of app
-                bookings with subscription benefits.
-              </Text>
-              {/* <Image style={tw`h-50 w-50`} source={require(`./qrcode.png`)} /> */}
-              <View style={tw`border p-5 my-3`}>
-                <QRCode
-                  value={`https://picsum.photos/id/104${booking_id}/500/500`}
-                  size={220}
-                />
-              </View>
+              {user.is_subscribed ? (
+                <Fragment>
+                  <Text style={tw`text-2xl font-bold text-center`}>
+                    Subscribed
+                  </Text>
+                  <Text style={tw`font-bold text-xl`}>
+                    {' '}
+                    BHD {booking.member_price}{' '}
+                  </Text>
+                  {!vendor.vendor_settings?.all_access && (
+                    <Text style={tw`font-bold text-xl`}>
+                      Timing: {booking.timing}
+                    </Text>
+                  )}
+                  <View style={tw`items-center`}>
+                    <Text style={tw`text-lg text-center pt-4`}>
+                      Subscription Active and benefits are applied automatically
+                      for online bookings, show this QR Code to vendor for out
+                      of app bookings with subscription benefits.
+                    </Text>
+                    {/* <Image style={tw`h-50 w-50`} source={require(`./qrcode.png`)} /> */}
+                    <View style={tw`border p-5 my-3`}>
+                      <QRCode
+                        value={`https://picsum.photos/id/104${booking_id}/500/500`}
+                        size={220}
+                      />
+                    </View>
+                  </View>
+                </Fragment>
+              ) : (
+                <Fragment>
+                  <View style={tw`flex-row mt-5`}>
+                    <Text style={tw`text-lg flex-1  text-black text-center`}>
+                      ${booking.price}
+                    </Text>
+                    <Text
+                      style={tw`text-lg flex-1 w-50 text-black opacity-60 text-center`}>
+                      Timing:{' '}
+                      {booking.timing == 'None' ? 'All Time' : booking.timing}
+                    </Text>
+                  </View>
+                  <Text>Not Subscribed</Text>
+                </Fragment>
+              )}
             </Fragment>
           ) : (
-            <Text style={tw`h-0 w-0 p-0 m-0`}></Text>
+            <Fragment>
+              <View style={tw`flex-row mt-5`}>
+                <Text
+                  style={tw`text-lg font-bold flex-1 opacity-70 text-black text-center`}>
+                  ${booking.price}
+                </Text>
+                <Text
+                  style={tw`text-lg font-bold flex-1 w-50 text-black opacity-70 text-center`}>
+                  Timing:{' '}
+                  {booking.timing == 'None' ? 'All Time' : booking.timing}
+                </Text>
+              </View>
+            </Fragment>
           )}
+          <Text style={tw`mb-2 text-lg font-bold mt-10`}>Description</Text>
+          <Text style={tw`mb-2 text-base`}>{booking.description}</Text>
+          <View style={[tw`my-2`]}>
+            <TouchableOpacity
+              onPress={() => {
+                dispatch(completeUserBooking({user: user, booking: booking}));
+                Alert.alert('Booking Successful!', '', [
+                  {
+                    text: 'OK',
+                    onPress: () =>
+                      navigation.navigate('Home')
+                  },
+                ]);
+              }}>
+              <View
+                style={[
+                  tw`h-80px rounded-2xl items-center justify-center`,
+                  {backgroundColor: '#54BAB9'},
+                ]}>
+                <Text style={tw`font-bold text-2xl text-white `}>
+                  Book Now
+                </Text>
+              </View>
+            </TouchableOpacity>
+          </View>
         </View>
-      </View>
+        {/* <TouchableOpacity
+          onPress={() => {
+            dispatch(completeUserBooking({user: user, booking: booking}));
+            Alert.alert('Booking Successful!', '', [
+              {
+                text: 'OK',
+                onPress: () =>
+                  navigation.navigate('OrderHistory', {
+                    user_id: user.id,
+                  }),
+              },
+            ]);
+          }}
+          style={tw`items-center justify-center bg-green-700 h-50px rounded-2xl border`}>
+          <Text style={tw`text-white font-bold text-xl`}>Book Now</Text>
+        </TouchableOpacity> */}
+      </ScrollView>
     </View>
   );
 };

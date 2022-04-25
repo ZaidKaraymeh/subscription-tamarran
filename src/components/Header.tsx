@@ -11,7 +11,7 @@ const Header = (props: any) => {
       style={[
         tw`flex-row h-50px bg-green-700`,
         {
-          backgroundColor: '#A2B38B',
+          backgroundColor: '#687E4A',
           shadowColor: 'black',
           shadowOpacity: 0.26,
           shadowOffset: {width: 0, height: 2},
@@ -21,7 +21,7 @@ const Header = (props: any) => {
       ]}>
       <View style={tw`flex-1 items-center justify-center`}>
         <TouchableOpacity onPress={() => navigation.goBack()}>
-          <Text style={tw`text-xl pl-5`} >Back</Text>
+          <Text style={tw`text-xl pl-5 text-white`}>Back</Text>
         </TouchableOpacity>
       </View>
       <View style={tw`flex-2  justify-center items-center`}></View>

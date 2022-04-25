@@ -10,9 +10,8 @@ import Header from '../components/Header';
 type Props = {};
 
 const AccountScreen = ({route, navigation}: any) => {
-  const {user_id} = route.params;
+  const {user} = route.params;
 
-  const user:User = getUserById(user_id);
   return (
     <View style={[tw`flex-1`, {backgroundColor: '#FBF8F1'}]}>
       <Header route={route} navigation={navigation} />

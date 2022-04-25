@@ -14,9 +14,8 @@ import Header from '../components/Header';
 
 
 const MenuScreen = ({route, navigation}: any) => {
-    const {user_id} = route.params;
+    const {user} = route.params;
     const params = {route, navigation};
-  const user: User = getUserById(user_id)
   const navigateAccount = useNavigation<accountScreenProp>();
   const navigateOrderHistory = useNavigation<orderHistoryScreenProp>();
   const navigateSalesHistory = useNavigation<salesHistoryScreenProp>();
@@ -26,7 +25,7 @@ const MenuScreen = ({route, navigation}: any) => {
     <View style={[tw`flex-1`, {backgroundColor: '#FBF8F1'}]}>
       <Header route={route} navigation={navigation} />
       <TouchableOpacity
-        onPress={() => navigateAccount.navigate('Account', {user_id: user_id})}>
+        onPress={() => navigateAccount.navigate('Account', {user: user})}>
         <View style={tw`h-50px  text-lg justify-center pl-5`}>
           <Text style={tw`text-xl font-bold`}>Account</Text>
         </View>
@@ -35,7 +34,7 @@ const MenuScreen = ({route, navigation}: any) => {
         <Fragment>
           <TouchableOpacity
             onPress={() =>
-              navigateOrderHistory.navigate('OrderHistory', {user_id: user_id})
+              navigateOrderHistory.navigate('OrderHistory', {user: user})
             }>
             <View style={tw`h-50px  text-lg justify-center pl-5`}>
               <Text style={tw`text-xl font-bold`}>Booking History</Text>
@@ -43,7 +42,7 @@ const MenuScreen = ({route, navigation}: any) => {
           </TouchableOpacity>
           <TouchableOpacity
             onPress={() =>
-              navigateAccount.navigate('Subscribe', {user_id: user_id})
+              navigateAccount.navigate('Subscribe', {user: user})
             }>
             <View style={tw`h-50px  text-lg justify-center pl-5`}>
               <Text style={tw`text-xl font-bold`}>Subscribe</Text>
@@ -60,7 +59,7 @@ const MenuScreen = ({route, navigation}: any) => {
           </TouchableOpacity>
           <TouchableOpacity
             onPress={() =>
-              navigateSalesHistory.navigate('SalesHistory', {user_id: user_id})
+              navigateSalesHistory.navigate('SalesHistory', {user: user})
             }>
             <View style={tw`h-50px  text-lg justify-center pl-5`}>
               <Text style={tw`text-xl font-bold`}>Sales History</Text>
@@ -68,7 +67,7 @@ const MenuScreen = ({route, navigation}: any) => {
           </TouchableOpacity>
           <TouchableOpacity
             onPress={() =>
-              navigateSalesHistory.navigate('SalesHistory', {user_id: user_id})
+              navigateSalesHistory.navigate('SalesHistory', {user: user})
             }>
             <View style={tw`h-50px  text-lg justify-center pl-5`}>
               <Text style={tw`text-xl font-bold`}>Scan QR Code</Text>

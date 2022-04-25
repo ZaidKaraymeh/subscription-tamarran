@@ -9,8 +9,8 @@ import Header from '../components/Header';
 type Props = {};
 
 const SalesHistoryScreen = ({route, navigation}: any) => {
-  const {user_id} = route.params;
-  const vendor: User = getUserById(user_id);
+  const {user} = route.params;
+  const vendor: User = getUserById(user.id);
   return (
     <ScrollView style={[tw`flex-1`, {backgroundColor: '#FBF8F1'}]}>
       <Header route={route} navigation={navigation} />
