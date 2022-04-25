@@ -1,4 +1,4 @@
-import {Alert, StyleSheet, Text, TouchableOpacity, View, Image, ScrollView} from 'react-native';
+import {Alert, StyleSheet, Text, TouchableOpacity, View, Image, ScrollView, ImageBackground} from 'react-native';
 import React, { Fragment, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {bookings, completeUserBooking, selectUsers} from '../features/userSlice';
@@ -37,7 +37,16 @@ const DetailsScreen = ({route, navigation}: any) => {
               style={[
                 tw`h-80 w-60 border rounded-3xl`,
                 {backgroundColor: '#54BAB9'},
-              ]}></View>
+              ]}>
+              {/* <ImageBackground
+                source={{
+                  uri: `https://picsum.photos/id/105${booking.id}/550/745`,
+                }}
+                style={[tw`h-80 rounded-3xl`, {borderRadius: 60}]}
+                resizeMode="contain"
+                
+                imageStyle={{borderRadius: 10}}></ImageBackground> */}
+            </View>
           </View>
         </View>
         <View
@@ -60,13 +69,16 @@ const DetailsScreen = ({route, navigation}: any) => {
             <Fragment>
               {user.is_subscribed ? (
                 <Fragment>
-                  <Text style={tw`text-2xl font-bold text-center`}>
-                    Subscribed
-                  </Text>
-                  <Text style={tw`font-bold text-xl`}>
-                    {' '}
-                    BHD {booking.member_price}{' '}
-                  </Text>
+                  <View style={tw`flex-row mt-5`}>
+                    <Text style={tw`text-lg flex-1  text-black text-center`}>
+                      BHD {booking.member_price}
+                    </Text>
+                    <Text
+                      style={tw`text-lg flex-1 w-50 text-black opacity-60 text-center`}>
+                      Timing:{' '}
+                      {booking.timing == 'None' ? 'All Time' : booking.timing}
+                    </Text>
+                  </View>
                   {!vendor.vendor_settings?.all_access && (
                     <Text style={tw`font-bold text-xl`}>
                       Timing: {booking.timing}
@@ -127,8 +139,7 @@ const DetailsScreen = ({route, navigation}: any) => {
                 Alert.alert('Booking Successful!', '', [
                   {
                     text: 'OK',
-                    onPress: () =>
-                      navigation.navigate('Home')
+                    onPress: () => navigation.navigate('Home'),
                   },
                 ]);
               }}>
@@ -137,9 +148,7 @@ const DetailsScreen = ({route, navigation}: any) => {
                   tw`h-80px rounded-2xl items-center justify-center`,
                   {backgroundColor: '#54BAB9'},
                 ]}>
-                <Text style={tw`font-bold text-2xl text-white `}>
-                  Book Now
-                </Text>
+                <Text style={tw`font-bold text-2xl text-white `}>Book Now</Text>
               </View>
             </TouchableOpacity>
           </View>
