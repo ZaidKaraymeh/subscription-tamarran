@@ -30,6 +30,7 @@ const HomeScreen = (props: Props) => {
   const navigateMenu = useNavigation<menuScreenProp>();
 
   const user: User = getUserById(2);
+  
 
   return (
     <Fragment>
