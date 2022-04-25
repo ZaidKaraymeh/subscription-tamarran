@@ -5,10 +5,12 @@ import Header from '../components/Header';
 import { VendorSettingsAction } from '../types';
 import { useDispatch } from 'react-redux';
 import { saveVendorSettings } from '../features/userSlice';
+import { getUserById } from '../features/userUtilities';
 type Props = {}
 
 const VendorSettings = ({route, navigation}: any) => {
     const {user} = route.params;
+    // const user_new = getUserById(user.id)
     const [settings, setSettings] = useState<VendorSettingsAction>(user.vendor_settings)
     const dispatch = useDispatch()
     const onSubmit = () => {
@@ -33,10 +35,10 @@ const VendorSettings = ({route, navigation}: any) => {
           <View style={tw`flex-1 items-start pl-2 items-center`}>
             <Switch
               trackColor={{false: '#767577', true: '#81b0ff'}}
-              thumbColor={settings.is_member ? '#f5dd4b' : '#f4f3f4'}
+              thumbColor={settings?.is_member ? '#f5dd4b' : '#f4f3f4'}
               ios_backgroundColor="#3e3e3e"
               onValueChange={() =>
-                setSettings({...settings, is_member: !settings.is_member})
+                setSettings({...settings, is_member: !settings?.is_member, all_access: false})
               }
               value={settings.is_member}
             />
@@ -54,6 +56,7 @@ const VendorSettings = ({route, navigation}: any) => {
               onValueChange={() =>
                 setSettings({...settings, all_access: !settings.all_access})
               }
+              disabled={!settings.is_member}
               value={settings.all_access}
             />
           </View>

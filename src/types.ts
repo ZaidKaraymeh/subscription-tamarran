@@ -101,7 +101,7 @@ export type User = {
   user_type: 'vendor' | 'customer';
   sales?: Sales[];
   vendor_bookings_id?: number []
-  vendor_settings?: VendorSettings,
+  vendor_settings: VendorSettings,
 };
 export type Booking = {
   id: number;

@@ -89,6 +89,7 @@ const initialState: Users = {
       purchases_count: 0,
       order_histroy: [],
       user_type: 'customer',
+      vendor_settings: {is_member: false, all_access: false, max_access: '5'},
     },
     {
       id: 3,
@@ -132,13 +133,13 @@ export const usersSlice = createSlice({
         timing: booking.timing
       }
       const user_new: User = {
+        ...user,
         id: user.id,
         username: user.username,
         email: user.email,
         purchases_count: user.is_subscribed ? user.purchases_count + 1 : user.purchases_count,
         is_subscribed: user.is_subscribed,
         user_type: user.user_type,
-        
         order_histroy: [order, ...user.order_histroy],
         
       };
@@ -152,6 +153,7 @@ export const usersSlice = createSlice({
         timing: booking.timing
       }
       const vendor_user_new: User = {
+        ...vendor_user,
         id: vendor_user.id,
         username: vendor_user.username,
         email: vendor_user.email,
@@ -173,6 +175,7 @@ export const usersSlice = createSlice({
       const {user} = action.payload;
       const index = state.users.findIndex(x => x.id == user.id)
       const user_new: User = {
+        ...user,
         id: user.id,
         username: user.username,
         email: user.email,

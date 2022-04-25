@@ -76,7 +76,7 @@ const DetailsScreen = ({route, navigation}: any) => {
                     <Text
                       style={tw`text-lg flex-1 w-50 text-black opacity-60 text-center`}>
                       Timing:{' '}
-                      {booking.timing == 'None' ? 'All Time' : booking.timing}
+                      {booking.timing == 'None' ? '24/7' : booking.timing}
                     </Text>
                   </View>
                   {!vendor.vendor_settings?.all_access && (
@@ -108,7 +108,7 @@ const DetailsScreen = ({route, navigation}: any) => {
                     <Text
                       style={tw`text-lg flex-1 w-50 text-black opacity-60 text-center`}>
                       Timing:{' '}
-                      {booking.timing == 'None' ? 'All Time' : booking.timing}
+                      {booking.timing == 'None' ? '24/7' : booking.timing}
                     </Text>
                   </View>
                   <Text>Not Subscribed</Text>
@@ -120,12 +120,12 @@ const DetailsScreen = ({route, navigation}: any) => {
               <View style={tw`flex-row mt-5`}>
                 <Text
                   style={tw`text-lg font-bold flex-1 opacity-70 text-black text-center`}>
-                  ${booking.price}
+                  BHD{booking.price}
                 </Text>
                 <Text
                   style={tw`text-lg font-bold flex-1 w-50 text-black opacity-70 text-center`}>
                   Timing:{' '}
-                  {booking.timing == 'None' ? 'All Time' : booking.timing}
+                  {booking.timing == 'None' ? '24/7' : booking.timing}
                 </Text>
               </View>
             </Fragment>
