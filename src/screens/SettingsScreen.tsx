@@ -11,7 +11,7 @@ const SettingsScreen = ({route, navigation}: any) => {
     const {user} = route.params;
   const navigateVendorSettings = useNavigation<vendorSettingsScreenProp>();
   return (
-    <View style={[tw`flex-1`, {backgroundColor: '#FBF8F1'}]}>
+    <View style={[tw`flex-1 bg-white`]}>
       <Header route={route} navigation={navigation} />
       <TouchableOpacity
         onPress={() =>

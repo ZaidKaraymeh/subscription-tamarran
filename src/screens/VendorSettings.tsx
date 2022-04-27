@@ -25,7 +25,7 @@ const VendorSettings = ({route, navigation}: any) => {
     
 
   return (
-    <View style={[tw`flex-1`, {backgroundColor: '#FBF8F1'}]}>
+    <View style={[tw`flex-1 bg-white`]}>
       <Header route={route} navigation={navigation} />
       <View style={tw`p-3`}>
         <View style={tw`flex-row my-1`}>

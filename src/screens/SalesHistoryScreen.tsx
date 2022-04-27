@@ -12,7 +12,7 @@ const SalesHistoryScreen = ({route, navigation}: any) => {
   const {user} = route.params;
   const vendor: User = getUserById(user.id);
   return (
-    <ScrollView style={[tw`flex-1`, {backgroundColor: '#FBF8F1'}]}>
+    <ScrollView style={[tw`flex-1 bg-white`]}>
       <Header route={route} navigation={navigation} />
       <View style={tw`mx-2`} >
         <Text style={tw` text-xl `}>Sales History:</Text>

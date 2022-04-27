@@ -29,7 +29,7 @@ const HomeScreen = (props: Props) => {
   const navigateDetails = useNavigation<detailScreenProp>();
   const navigateMenu = useNavigation<menuScreenProp>();
 
-  const user: User = getUserById(1);
+  const user: User = getUserById(2);
 
 
   return (
@@ -38,7 +38,7 @@ const HomeScreen = (props: Props) => {
         style={[
           tw`flex-row h-75px mb-2`,
           {
-            backgroundColor: '#687E4A',
+            backgroundColor: '#1BBC31',
             shadowColor: 'black',
             shadowOpacity: 0.31,
             shadowOffset: {width: 0, height: 2},
@@ -72,7 +72,7 @@ const HomeScreen = (props: Props) => {
         </View> */}
       </View>
 
-      <ScrollView style={[tw`flex-1 bg-white`, {backgroundColor: '#FBF8F1'}]}>
+      <ScrollView style={[tw`flex-1 bg-white`]}>
         {bookings.bookings.map((booking) => {
           return (
             <TouchableOpacity

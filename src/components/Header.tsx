@@ -11,7 +11,7 @@ const Header = (props: any) => {
       style={[
         tw`flex-row h-50px bg-green-700`,
         {
-          backgroundColor: '#687E4A',
+          backgroundColor: '#1BBC31',
           shadowColor: 'black',
           shadowOpacity: 0.26,
           shadowOffset: {width: 0, height: 2},

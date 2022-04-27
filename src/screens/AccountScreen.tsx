@@ -13,7 +13,7 @@ const AccountScreen = ({route, navigation}: any) => {
   const {user} = route.params;
 
   return (
-    <View style={[tw`flex-1`, {backgroundColor: '#FBF8F1'}]}>
+    <View style={[tw`flex-1 bg-white`]}>
       <Header route={route} navigation={navigation} />
       <View style={tw`p-3`}>
         <Text style={tw` text-xl`}>Id: {user.id}</Text>

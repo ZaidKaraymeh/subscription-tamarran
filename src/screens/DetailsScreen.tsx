@@ -24,35 +24,33 @@ const DetailsScreen = ({route, navigation}: any) => {
 
 
   return (
-    <View style={[tw`flex-1 bg-white`, {backgroundColor: '#F7ECDE'}]}>
+    <View style={[tw`flex-1 bg-white`]}>
       <Header route={route} navigation={navigation} />
       <ScrollView style={tw``}>
         <View style={tw`flex-1`}>
           <View
             style={[
               tw`h-100 justify-center items-center`,
-              {backgroundColor: '#F7ECDE'},
             ]}>
-            <View
+            {/* <View
               style={[
                 tw`h-80 w-60 border rounded-3xl`,
                 {backgroundColor: '#54BAB9'},
-              ]}>
-              {/* <ImageBackground
+              ]}> */}
+              <ImageBackground
                 source={{
-                  uri: `https://picsum.photos/id/105${booking.id}/550/745`,
+                  uri: `https://picsum.photos/id/105${booking.id}/600/600`,
                 }}
-                style={[tw`h-80 rounded-3xl`, {borderRadius: 60}]}
-                resizeMode="contain"
+                style={[tw`h-100 w-100 rounded-3xl`, {borderRadius: 60}]}
                 
-                imageStyle={{borderRadius: 10}}></ImageBackground> */}
-            </View>
+                imageStyle={{borderRadius: 10}}></ImageBackground>
+            {/* </View> */}
           </View>
         </View>
         <View
           style={[
             tw`px-5, pt-7`,
-            {backgroundColor: '#FBF8F1', borderRadius: 40},
+            {borderRadius: 40},
           ]}>
           <Text style={tw`text-2xl font-bold text-center`}>
             {booking?.vendor_name}
@@ -146,7 +144,7 @@ const DetailsScreen = ({route, navigation}: any) => {
               <View
                 style={[
                   tw`h-80px rounded-2xl items-center justify-center`,
-                  {backgroundColor: '#54BAB9'},
+                  {backgroundColor: '#231f20'},
                 ]}>
                 <Text style={tw`font-bold text-2xl text-white `}>Book Now</Text>
               </View>

@@ -82,7 +82,7 @@ const SubscribeScreen = ({route, navigation}: any) => {
   const dispatch = useDispatch();
   const {user} = route.params;
   return (
-    <ScrollView style={[tw`flex-1 bg-white`,]}>
+    <ScrollView style={[tw`flex-1 bg-white`]}>
       <Header route={route} navigation={navigation} />
       <View style={tw`flex-1 flex-col items-center bg-white`}>
         <View style={tw``}>
@@ -110,7 +110,10 @@ const SubscribeScreen = ({route, navigation}: any) => {
                   },
                 ]);
               }}
-              style={[tw`rounded-2xl my-5 bg-green-600`]}>
+              style={[
+                tw`rounded-2xl my-5 bg-green-600`,
+                {backgroundColor: '#231f20'},
+              ]}>
               <Text style={tw`text-3xl p-4 my-2 text-white w-80 text-center `}>
                 Subscribe Now
               </Text>

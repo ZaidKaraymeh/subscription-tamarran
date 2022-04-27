@@ -83,7 +83,7 @@ const App = () => {
           name="Account"
           component={AccountScreen}
           options={{
-            animation: 'slide_from_left',
+            animation: 'slide_from_right',
             headerShown: false,
           }}
         />
@@ -91,7 +91,7 @@ const App = () => {
           name="OrderHistory"
           component={OrderHistoryScreen}
           options={{
-            animation: 'slide_from_left',
+            animation: 'slide_from_right',
             headerShown: false,
           }}
         />
@@ -99,7 +99,7 @@ const App = () => {
           name="SalesHistory"
           component={SalesHistoryScreen}
           options={{
-            animation: 'slide_from_left',
+            animation: 'slide_from_right',
             headerShown: false,
           }}
         />
@@ -107,7 +107,7 @@ const App = () => {
           name="Settings"
           component={SettingsScreen}
           options={{
-            animation: 'slide_from_left',
+            animation: 'slide_from_right',
             headerShown: false,
           }}
         />
@@ -115,7 +115,7 @@ const App = () => {
           name="VendorSettings"
           component={VendorSettings}
           options={{
-            animation: 'slide_from_left',
+            animation: 'slide_from_right',
             headerShown: false,
           }}
         />

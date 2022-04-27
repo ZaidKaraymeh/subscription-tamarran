@@ -10,7 +10,7 @@ type Props = {}
 const OrderHistoryScreen = ({route, navigation}: any) => {
   const {user} = route.params
   return (
-    <ScrollView>
+    <ScrollView style={tw`bg-white`} >
       <Header route={route} navigation={navigation} />
       <Text style={tw` text-xl`}>Booking History:</Text>
       {user.order_histroy.map((booking: OrderHistory) => {

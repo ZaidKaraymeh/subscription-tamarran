@@ -22,7 +22,7 @@ const MenuScreen = ({route, navigation}: any) => {
   const navigateSettings = useNavigation<settingsScreenProp>();
 
   return (
-    <View style={[tw`flex-1`, {backgroundColor: '#FBF8F1'}]}>
+    <View style={[tw`flex-1 bg-white`]}>
       <Header route={route} navigation={navigation} />
       <TouchableOpacity
         onPress={() => navigateAccount.navigate('Account', {user: user})}>
