@@ -89,6 +89,7 @@ const initialState: Users = {
       purchases_count: 0,
       order_histroy: [],
       user_type: 'customer',
+      vendor_bookings_id: [],
       vendor_settings: {is_member: false, all_access: false, max_access: '5'},
     },
     {

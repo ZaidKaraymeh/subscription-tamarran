@@ -16,7 +16,7 @@ import {useNavigation} from '@react-navigation/native';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import {bookings} from '../features/userSlice';
 import {RootStackParamList, User} from '../types'
-import { getUserById } from '../features/userUtilities';
+import { getUserById, getVendorBookingsById } from '../features/userUtilities';
 
 import { subscribeScreenProp, detailScreenProp, menuScreenProp } from '../types'
 
@@ -24,13 +24,19 @@ type Props = {};
 
 
 
-const HomeScreen = (props: Props) => {
+const HomeScreen = ({route, navigation}: any) => {
+  const { user }: { user : User }  = route.params;
   const navigateSubscribe = useNavigation<subscribeScreenProp>();
   const navigateDetails = useNavigation<detailScreenProp>();
   const navigateMenu = useNavigation<menuScreenProp>();
+  
+  let vendor_bookings = []
 
-  const user: User = getUserById(2);
+  if (user.user_type == "vendor"){
+    vendor_bookings = getVendorBookingsById(user)
+  }
 
+  console.log(vendor_bookings)
 
   return (
     <Fragment>
@@ -73,46 +79,94 @@ const HomeScreen = (props: Props) => {
       </View>
 
       <ScrollView style={[tw`flex-1 bg-white`]}>
-        {bookings.bookings.map((booking) => {
-          return (
-            <TouchableOpacity
-              key={booking.id}
-              style={[
-                tw`border-0 mb-3 mx-3 rounded-xl`,
-                {
-                  shadowColor: 'black',
-                  shadowOpacity: 0.26,
-                  shadowOffset: {width: 0, height: 2},
-                  shadowRadius: 10,
-                  elevation: 4,
-                  backgroundColor: 'white',
-                },
-              ]}
-              onPress={() =>
-                navigateDetails.navigate('Details', {
-                  booking_id: booking.id,
-                  user: user,
-                })
-              }>
-              <ImageBackground
-                source={{
-                  uri: `https://picsum.photos/id/105${booking.id}/1000/1000`,
-                }}
-                style={tw`h-150px p-2 justify-end`}
-                imageStyle={{borderRadius: 10}}></ImageBackground>
-              <View style={tw`p-2`}>
-                <Text style={tw`text-lg`}>
-                  {booking.vendor_name} - {booking.location}
-                </Text>
-                <Text style={tw`text-2xl font-bold text-yellow-600 p-0 m-0  `}>
-                  {Array.from(Array(booking.stars), (e, i) => {
-                    return '* ';
-                  })}
-                </Text>
-              </View>
-            </TouchableOpacity>
-          );
-        })}
+        {user.user_type == "customer" ? 
+        
+          bookings.bookings.map((booking) => {
+            return (
+              <TouchableOpacity
+                key={booking.id}
+                style={[
+                  tw`border-0 mb-3 mx-3 rounded-xl`,
+                  {
+                    shadowColor: 'black',
+                    shadowOpacity: 0.26,
+                    shadowOffset: {width: 0, height: 2},
+                    shadowRadius: 10,
+                    elevation: 4,
+                    backgroundColor: 'white',
+                  },
+                ]}
+                onPress={() =>
+                  navigateDetails.navigate('Details', {
+                    booking_id: booking.id,
+                    user: user,
+                  })
+                }>
+                <ImageBackground
+                  source={{
+                    uri: `https://picsum.photos/id/105${booking.id}/1000/1000`,
+                  }}
+                  style={tw`h-150px p-2 justify-end`}
+                  imageStyle={{borderRadius: 10}}></ImageBackground>
+                <View style={tw`p-2`}>
+                  <Text style={tw`text-lg`}>
+                    {booking.vendor_name} - {booking.location}
+                  </Text>
+                  <Text style={tw`text-2xl font-bold text-yellow-600 p-0 m-0  `}>
+                    {Array.from(Array(booking.stars), (e, i) => {
+                      return '* ';
+                    })}
+                  </Text>
+                </View>
+              </TouchableOpacity>
+            );
+          })
+          :
+          <Fragment>
+            <Text style={tw`text-xl text-center my-3`} >My Venues & Activities</Text>
+            {vendor_bookings.map((booking) => {
+              return (
+                <TouchableOpacity
+                  key={booking.id}
+                  style={[
+                    tw`border-0 mb-3 mx-3 rounded-xl`,
+                    {
+                      shadowColor: 'black',
+                      shadowOpacity: 0.26,
+                      shadowOffset: {width: 0, height: 2},
+                      shadowRadius: 10,
+                      elevation: 4,
+                      backgroundColor: 'white',
+                    },
+                  ]}
+                  onPress={() =>
+                    navigateDetails.navigate('Details', {
+                      booking_id: booking.id,
+                      user: user,
+                    })
+                  }>
+                  <ImageBackground
+                    source={{
+                      uri: `https://picsum.photos/id/105${booking.id}/1000/1000`,
+                    }}
+                    style={tw`h-150px p-2 justify-end`}
+                    imageStyle={{borderRadius: 10}}></ImageBackground>
+                  <View style={tw`p-2`}>
+                    <Text style={tw`text-lg`}>
+                      {booking.vendor_name} - {booking.location}
+                    </Text>
+                    <Text style={tw`text-2xl font-bold text-yellow-600 p-0 m-0  `}>
+                      {Array.from(Array(booking.stars), (e, i) => {
+                        return '* ';
+                      })}
+                    </Text>
+                  </View>
+                </TouchableOpacity>
+              );
+            })}
+          </Fragment>
+        }
+        
 
         {/* <TouchableOpacity 
         onPress={() => navigate.navigate("Subscribe")}

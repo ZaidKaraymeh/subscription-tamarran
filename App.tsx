@@ -39,6 +39,7 @@ import SalesHistoryScreen from './src/screens/SalesHistoryScreen';
 import {RootStackParamList} from './src/types';
 import SettingsScreen from './src/screens/SettingsScreen';
 import VendorSettings from './src/screens/VendorSettings';
+import LoginScreen from './src/screens/LoginScreen';
 
 
 
@@ -47,11 +48,19 @@ const RootStack = createNativeStackNavigator<RootStackParamList>();
 const App = () => {
   return (
     <NavigationContainer>
-      <RootStack.Navigator initialRouteName="Home">
+      <RootStack.Navigator initialRouteName="Login">
         <RootStack.Screen
           name="Home"
           component={HomeScreen}
           options={{
+            headerShown: false,
+          }}
+        />
+        <RootStack.Screen
+          name="Login"
+          component={LoginScreen}
+          options={{
+            animation: 'slide_from_right',
             headerShown: false,
           }}
         />

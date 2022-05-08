@@ -4,7 +4,7 @@ import tw from 'twrnc';
 import {useSelector} from 'react-redux';
 import {selectUsers} from '../features/userSlice';
 import {useNavigation} from '@react-navigation/native';
-import {RootStackParamList, settingsScreenProp, User} from '../types';
+import {loginScreenProp, RootStackParamList, settingsScreenProp, User} from '../types';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import { getUserById } from '../features/userUtilities';
 
@@ -20,6 +20,7 @@ const MenuScreen = ({route, navigation}: any) => {
   const navigateOrderHistory = useNavigation<orderHistoryScreenProp>();
   const navigateSalesHistory = useNavigation<salesHistoryScreenProp>();
   const navigateSettings = useNavigation<settingsScreenProp>();
+  const navigateLogin = useNavigation<loginScreenProp>();
 
   return (
     <View style={[tw`flex-1 bg-white`]}>
@@ -75,6 +76,14 @@ const MenuScreen = ({route, navigation}: any) => {
           </TouchableOpacity>
         </Fragment>
       )}
+      <TouchableOpacity
+        onPress={() =>
+          navigateSalesHistory.navigate('Login')
+        }>
+        <View style={tw`h-50px  text-lg justify-center pl-5`}>
+          <Text style={tw`text-xl font-bold`}>Logout</Text>
+        </View>
+      </TouchableOpacity>
     </View>
   );
 };

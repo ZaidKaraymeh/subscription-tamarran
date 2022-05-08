@@ -1,7 +1,8 @@
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 
 export type RootStackParamList = {
-  Home: undefined;
+  Login: undefined;  
+  Home: {user: User};
   Subscribe: {user: User};
   Details: {booking_id: number; user: User};
   Menu: {user: User};
@@ -14,6 +15,14 @@ export type RootStackParamList = {
 
 
 
+export type homeScreenProp = NativeStackNavigationProp<
+  RootStackParamList,
+  'Home'
+>;
+export type loginScreenProp = NativeStackNavigationProp<
+  RootStackParamList,
+  'Login'
+>;
 export type vendorSettingsScreenProp = NativeStackNavigationProp<
   RootStackParamList,
   'VendorSettings'
@@ -100,9 +109,10 @@ export type User = {
   order_histroy: OrderHistory[];
   user_type: 'vendor' | 'customer';
   sales?: Sales[];
-  vendor_bookings_id?: number []
+  vendor_bookings_id: number []
   vendor_settings: VendorSettings,
 };
+
 export type Booking = {
   id: number;
   vendor_name: string;

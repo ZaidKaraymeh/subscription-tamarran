@@ -3,7 +3,7 @@ import React, { Fragment, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {bookings, completeUserBooking, selectUsers} from '../features/userSlice';
 import tw from 'twrnc'
-import { getUserById } from '../features/userUtilities';
+import { getBookingById, getUserById } from '../features/userUtilities';
 import QRCode from 'react-native-qrcode-svg';
 
 import {QRCodeType, User} from '../types';
@@ -11,9 +11,7 @@ import Header from '../components/Header';
 
 
 
-export const getBookingById = (id: number) => {
-  return bookings.bookings.find((booking) => booking.id === id);
-};
+
 
 const DetailsScreen = ({route, navigation}: any) => {
   const {booking_id, user} = route.params;
