@@ -15,7 +15,7 @@ const VendorSettings = ({route, navigation}: any) => {
     const dispatch = useDispatch()
     const onSubmit = () => {
       dispatch(saveVendorSettings({...settings, user}))
-      navigation.navigate("Home")
+      navigation.navigate("Home", {user: user})
     }
 
     // useEffect(() => {

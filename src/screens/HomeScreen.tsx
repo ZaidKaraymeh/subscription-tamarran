@@ -26,17 +26,18 @@ type Props = {};
 
 const HomeScreen = ({route, navigation}: any) => {
   const { user }: { user : User }  = route.params;
+  const user_new: User = getUserById(user.id)
   const navigateSubscribe = useNavigation<subscribeScreenProp>();
   const navigateDetails = useNavigation<detailScreenProp>();
   const navigateMenu = useNavigation<menuScreenProp>();
   
   let vendor_bookings = []
 
-  if (user.user_type == "vendor"){
-    vendor_bookings = getVendorBookingsById(user)
+  if (user_new.user_type == "vendor"){
+    vendor_bookings = getVendorBookingsById(user_new);
   }
 
-  console.log(vendor_bookings)
+  // console.log(vendor_bookings)
 
   return (
     <Fragment>
@@ -55,11 +56,11 @@ const HomeScreen = ({route, navigation}: any) => {
         <View style={tw` flex-1 h-75px justify-center items-center`}>
           <TouchableOpacity
             onPress={() =>
-              navigateSubscribe.navigate('Subscribe', {user: user})
+              navigateSubscribe.navigate('Subscribe', {user: user_new})
             }>
             <Text
               style={tw`text-white`}
-              onPress={() => navigateMenu.navigate('Menu', {user: user})}>
+              onPress={() => navigateMenu.navigate('Menu', {user: user_new})}>
               Menu
             </Text>
           </TouchableOpacity>
@@ -79,8 +80,7 @@ const HomeScreen = ({route, navigation}: any) => {
       </View>
 
       <ScrollView style={[tw`flex-1 bg-white`]}>
-        {user.user_type == "customer" ? 
-        
+        {user_new.user_type == 'customer' ? (
           bookings.bookings.map((booking) => {
             return (
               <TouchableOpacity
@@ -99,7 +99,7 @@ const HomeScreen = ({route, navigation}: any) => {
                 onPress={() =>
                   navigateDetails.navigate('Details', {
                     booking_id: booking.id,
-                    user: user,
+                    user: user_new,
                   })
                 }>
                 <ImageBackground
@@ -112,7 +112,8 @@ const HomeScreen = ({route, navigation}: any) => {
                   <Text style={tw`text-lg`}>
                     {booking.vendor_name} - {booking.location}
                   </Text>
-                  <Text style={tw`text-2xl font-bold text-yellow-600 p-0 m-0  `}>
+                  <Text
+                    style={tw`text-2xl font-bold text-yellow-600 p-0 m-0  `}>
                     {Array.from(Array(booking.stars), (e, i) => {
                       return '* ';
                     })}
@@ -121,9 +122,11 @@ const HomeScreen = ({route, navigation}: any) => {
               </TouchableOpacity>
             );
           })
-          :
+        ) : (
           <Fragment>
-            <Text style={tw`text-xl text-center my-3`} >My Venues & Activities</Text>
+            <Text style={tw`text-xl text-center my-3`}>
+              My Venues & Activities
+            </Text>
             {vendor_bookings.map((booking) => {
               return (
                 <TouchableOpacity
@@ -142,7 +145,7 @@ const HomeScreen = ({route, navigation}: any) => {
                   onPress={() =>
                     navigateDetails.navigate('Details', {
                       booking_id: booking.id,
-                      user: user,
+                      user: user_new,
                     })
                   }>
                   <ImageBackground
@@ -155,7 +158,8 @@ const HomeScreen = ({route, navigation}: any) => {
                     <Text style={tw`text-lg`}>
                       {booking.vendor_name} - {booking.location}
                     </Text>
-                    <Text style={tw`text-2xl font-bold text-yellow-600 p-0 m-0  `}>
+                    <Text
+                      style={tw`text-2xl font-bold text-yellow-600 p-0 m-0  `}>
                       {Array.from(Array(booking.stars), (e, i) => {
                         return '* ';
                       })}
@@ -165,8 +169,7 @@ const HomeScreen = ({route, navigation}: any) => {
               );
             })}
           </Fragment>
-        }
-        
+        )}
 
         {/* <TouchableOpacity 
         onPress={() => navigate.navigate("Subscribe")}

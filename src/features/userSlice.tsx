@@ -174,6 +174,7 @@ export const usersSlice = createSlice({
     
     activateUserSubscription: (state, action: PayloadAction<SubscribeAction>) => {
       const {user} = action.payload;
+      console.log("USER", user)
       const index = state.users.findIndex(x => x.id == user.id)
       const user_new: User = {
         ...user,
@@ -184,6 +185,8 @@ export const usersSlice = createSlice({
         is_subscribed: !user.is_subscribed,
         user_type: user.user_type,
         order_histroy: user.order_histroy,
+        vendor_settings: user.vendor_settings,
+        vendor_bookings_id: []
       };
       state.users[index]  = user_new
     },

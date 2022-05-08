@@ -102,11 +102,12 @@ const SubscribeScreen = ({route, navigation}: any) => {
             <TouchableOpacity
               onPress={() => {
                 dispatch(activateUserSubscription({user: user}));
+                // const user_new = getUserById(user.id)
                 Alert.alert('Subscription Activated Successful!', '', [
                   {
                     text: 'OK',
                     onPress: () =>
-                      navigation.navigate('Home', {user_id: user.id}),
+                      navigation.navigate('Home', {user: user}),
                   },
                 ]);
               }}
