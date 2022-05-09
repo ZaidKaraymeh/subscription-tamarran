@@ -65,7 +65,7 @@ const VendorSettings = ({route, navigation}: any) => {
           <View style={tw`flex-3 justify-center `}>
             <Text style={tw`text-lg`}>Max Access with Pro Benefits</Text>
           </View>
-          <View style={tw`flex-1 items-start pl-2`}>
+          {/* <View style={tw`flex-1 items-start pl-2`}>
             <TextInput
               style={tw`h-45px text-xl border-b text-center`}
               onChangeText={(ev) => setSettings({...settings, max_access: ev})}
@@ -73,7 +73,7 @@ const VendorSettings = ({route, navigation}: any) => {
               placeholder="Enter username"
               keyboardType="numeric"
             />
-          </View>
+          </View> */}
         </View>
         <View style={tw`my-4`} >
           <Button onPress={onSubmit} title="Save Changes" color="#54BAB9" />

@@ -1,5 +1,5 @@
 import { useSelector } from "react-redux";
-import { User, Booking } from "../types";
+import { User, Booking, OrderHistory } from "../types";
 import { bookings, selectUsers } from "./userSlice";
 
 export const getUserById = (id: number) => {
@@ -23,3 +23,23 @@ export const getVendorBookingsById = (user: User) => {
   return bookings
 
 }
+
+export const getUserProAccessLeft = (user: User, vendor: Booking) => {
+  if (vendor.max_access == null) {return}
+  let bookings_amount : number = 0
+  for (let index = 0; index < user.order_histroy.length; index++) {
+    if (user.order_histroy[index].vendor_id === vendor.id){
+      bookings_amount += 1;
+    }
+    console.log("bookings amount ", bookings_amount)
+    
+  }
+  // const user_vendor_orders = user.order_histroy.map(
+  //   (booking: OrderHistory) => {
+  //     if (booking.id === vendor.id){
+  //       return bookings = [...bookings, booking]
+  //     }
+  // })
+  const access_left =  vendor.max_access - bookings_amount
+  return access_left < 0 ? 0 : access_left
+};

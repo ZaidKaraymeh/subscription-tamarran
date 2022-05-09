@@ -78,7 +78,6 @@ export type VendorSettingsAction = {
 export type VendorSettings = {
   is_member: boolean;
   all_access: boolean;
-  max_access: string;
 }
 export type SubscribeAction = {
   user: User;
@@ -86,6 +85,7 @@ export type SubscribeAction = {
 
 export type OrderHistory = {
   id: number;
+  vendor_id: number;
   vendor_name: string;
   price: number;
   user_id: number;
@@ -122,5 +122,6 @@ export type Booking = {
   stars: number;
   member_price: number;
   location: string;
+  max_access: number | null;
   timing?: string;
 };
