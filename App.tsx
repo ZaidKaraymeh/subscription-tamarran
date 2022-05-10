@@ -40,6 +40,7 @@ import {RootStackParamList} from './src/types';
 import SettingsScreen from './src/screens/SettingsScreen';
 import VendorSettings from './src/screens/VendorSettings';
 import LoginScreen from './src/screens/LoginScreen';
+import VenueSettings from './src/screens/VenueSettings';
 
 
 
@@ -123,6 +124,14 @@ const App = () => {
         <RootStack.Screen
           name="VendorSettings"
           component={VendorSettings}
+          options={{
+            animation: 'slide_from_right',
+            headerShown: false,
+          }}
+        />
+        <RootStack.Screen
+          name="VenueSettings"
+          component={VenueSettings}
           options={{
             animation: 'slide_from_right',
             headerShown: false,

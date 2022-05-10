@@ -24,8 +24,12 @@ export const bookings: BookingsInterface = {
       stars: 5,
       location: 'Busaiteen',
       timing: 'None',
-      max_access: null,
-      description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed semper at eros vel malesuada. Integer facilisis eget felis eu dictum. Nulla facilisi. Interdum et malesuada fames ac ante ipsum primis in faucibus. Praesent et eros tincidunt, laoreet sapien id, vestibulum enim. Nulla nibh libero, eleifend id dapibus et, facilisis in dolor. Maecenas bibendum felis in nunc finibus pellentesque. Cras augue massa, blandit vitae vehicula sollicitudin, consequat at tortor. Integer nunc purus, ultrices ac magna sit amet, pellentesque efficitur turpis. Praesent lacus orci, semper vitae diam sed, dignissim bibendum turpis. Maecenas varius tempor viverra. Etiam interdum tristique diam vitae dapibus. Nunc eu neque vitae turpis sagittis imperdiet et sit amet dolor."
+      booking_settings: {
+        max_access: null,
+        all_access: false,
+      },
+      description:
+        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed semper at eros vel malesuada. Integer facilisis eget felis eu dictum. Nulla facilisi. Interdum et malesuada fames ac ante ipsum primis in faucibus. Praesent et eros tincidunt, laoreet sapien id, vestibulum enim. Nulla nibh libero, eleifend id dapibus et, facilisis in dolor. Maecenas bibendum felis in nunc finibus pellentesque. Cras augue massa, blandit vitae vehicula sollicitudin, consequat at tortor. Integer nunc purus, ultrices ac magna sit amet, pellentesque efficitur turpis. Praesent lacus orci, semper vitae diam sed, dignissim bibendum turpis. Maecenas varius tempor viverra. Etiam interdum tristique diam vitae dapibus. Nunc eu neque vitae turpis sagittis imperdiet et sit amet dolor.',
     },
     {
       id: 2,
@@ -36,8 +40,12 @@ export const bookings: BookingsInterface = {
       stars: 3,
       location: 'Riffa',
       timing: '8:00-9:30',
-      max_access: 3,
-      description: "Sed vel nisl sed justo euismod scelerisque vel eget orci. Vestibulum felis risus, iaculis vitae magna a, fringilla iaculis velit. Nunc facilisis vitae purus vitae bibendum. Curabitur id mollis ipsum. Donec dictum justo at magna condimentum sollicitudin. Ut ornare tincidunt molestie. Vivamus elementum nunc porttitor nisl suscipit facilisis. Sed accumsan dolor sed eros facilisis imperdiet. Praesent ac malesuada libero, quis ullamcorper justo. Vestibulum odio odio, sodales ut suscipit vitae, condimentum nec urna. Praesent vel suscipit sem. Nunc in convallis eros. Morbi quam est, elementum a turpis nec, mattis congue libero."
+      booking_settings: {
+        max_access: 3,
+        all_access: false,
+      },
+      description:
+        'Sed vel nisl sed justo euismod scelerisque vel eget orci. Vestibulum felis risus, iaculis vitae magna a, fringilla iaculis velit. Nunc facilisis vitae purus vitae bibendum. Curabitur id mollis ipsum. Donec dictum justo at magna condimentum sollicitudin. Ut ornare tincidunt molestie. Vivamus elementum nunc porttitor nisl suscipit facilisis. Sed accumsan dolor sed eros facilisis imperdiet. Praesent ac malesuada libero, quis ullamcorper justo. Vestibulum odio odio, sodales ut suscipit vitae, condimentum nec urna. Praesent vel suscipit sem. Nunc in convallis eros. Morbi quam est, elementum a turpis nec, mattis congue libero.',
     },
     {
       id: 3,
@@ -48,8 +56,12 @@ export const bookings: BookingsInterface = {
       stars: 4,
       location: 'Hamala',
       timing: 'None',
-      max_access: null,
-      description: "Phasellus auctor, enim non aliquam feugiat, arcu ipsum porta nisi, a cursus nunc velit quis arcu. Quisque lacinia aliquet enim, ut lobortis justo tempor vitae. Donec ullamcorper erat non diam hendrerit, nec pellentesque ligula tempus. Morbi in odio vitae quam imperdiet mattis. Donec vel arcu a purus mollis placerat. Vivamus suscipit elit nec sagittis varius. Lorem ipsum dolor sit amet, consectetur adipiscing elit.Phasellus auctor, enim non aliquam feugiat, arcu ipsum porta nisi, a cursus nunc velit quis arcu. Quisque lacinia aliquet enim, ut lobortis justo tempor vitae. Donec ullamcorper erat non diam hendrerit, nec pellentesque ligula tempus. Morbi in odio vitae quam imperdiet mattis. Donec vel arcu a purus mollis placerat. Vivamus suscipit elit nec sagittis varius. Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+      booking_settings: {
+        max_access: null,
+        all_access: false,
+      },
+      description:
+        'Phasellus auctor, enim non aliquam feugiat, arcu ipsum porta nisi, a cursus nunc velit quis arcu. Quisque lacinia aliquet enim, ut lobortis justo tempor vitae. Donec ullamcorper erat non diam hendrerit, nec pellentesque ligula tempus. Morbi in odio vitae quam imperdiet mattis. Donec vel arcu a purus mollis placerat. Vivamus suscipit elit nec sagittis varius. Lorem ipsum dolor sit amet, consectetur adipiscing elit.Phasellus auctor, enim non aliquam feugiat, arcu ipsum porta nisi, a cursus nunc velit quis arcu. Quisque lacinia aliquet enim, ut lobortis justo tempor vitae. Donec ullamcorper erat non diam hendrerit, nec pellentesque ligula tempus. Morbi in odio vitae quam imperdiet mattis. Donec vel arcu a purus mollis placerat. Vivamus suscipit elit nec sagittis varius. Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
     },
     {
       id: 4,
@@ -60,8 +72,12 @@ export const bookings: BookingsInterface = {
       stars: 4,
       location: 'Manama',
       timing: '12:00-13:30',
-      max_access: 2,
-      description: "Nam vehicula mauris tincidunt eros congue, a dapibus arcu tempor. Fusce luctus nisi dui, non convallis arcu porta ut. Morbi in viverra eros. Maecenas lacinia purus risus, id aliquet lacus feugiat quis. Maecenas ac leo vel dolor ullamcorper feugiat. Nam facilisis odio vel diam interdum feugiat. Aliquam mattis malesuada dolor non rhoncus. Nullam sodales diam eget lacinia porta. Nulla pretium lorem ante, vitae rhoncus nulla pulvinar quis."
+      booking_settings: {
+        max_access: 2,
+        all_access: false,
+      },
+      description:
+        'Nam vehicula mauris tincidunt eros congue, a dapibus arcu tempor. Fusce luctus nisi dui, non convallis arcu porta ut. Morbi in viverra eros. Maecenas lacinia purus risus, id aliquet lacus feugiat quis. Maecenas ac leo vel dolor ullamcorper feugiat. Nam facilisis odio vel diam interdum feugiat. Aliquam mattis malesuada dolor non rhoncus. Nullam sodales diam eget lacinia porta. Nulla pretium lorem ante, vitae rhoncus nulla pulvinar quis.',
     },
   ],
 }; 

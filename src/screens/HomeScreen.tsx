@@ -16,7 +16,7 @@ import {useNavigation} from '@react-navigation/native';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import {bookings} from '../features/userSlice';
 import {RootStackParamList, User} from '../types'
-import { getUserById, getVendorBookingsById } from '../features/userUtilities';
+import { getUserById, getVendorBookings } from '../features/userUtilities';
 
 import { subscribeScreenProp, detailScreenProp, menuScreenProp } from '../types'
 
@@ -34,7 +34,7 @@ const HomeScreen = ({route, navigation}: any) => {
   let vendor_bookings = []
 
   if (user_new.user_type == "vendor"){
-    vendor_bookings = getVendorBookingsById(user_new);
+    vendor_bookings = getVendorBookings(user_new);
   }
 
   // console.log(vendor_bookings)

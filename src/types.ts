@@ -11,6 +11,7 @@ export type RootStackParamList = {
   SalesHistory: {user: User};
   Settings: {user: User};
   VendorSettings: {user: User}
+  VenueSettings: {user: User, booking: Booking}
 };
 
 
@@ -18,6 +19,10 @@ export type RootStackParamList = {
 export type homeScreenProp = NativeStackNavigationProp<
   RootStackParamList,
   'Home'
+>;
+export type venueSettingsScreenProp = NativeStackNavigationProp<
+  RootStackParamList,
+  'VenueSettings'
 >;
 export type loginScreenProp = NativeStackNavigationProp<
   RootStackParamList,
@@ -122,6 +127,10 @@ export type Booking = {
   stars: number;
   member_price: number;
   location: string;
-  max_access: number | null;
+  booking_settings: {
+    max_access: number | null,
+    all_access: boolean;
+
+  }
   timing?: string;
 };

@@ -11,7 +11,7 @@ export const getBookingById = (id: number) => {
   return bookings.bookings.find((booking) => booking.id === id);
 };
 
-export const getVendorBookingsById = (user: User) => {
+export const getVendorBookings = (user: User) => {
   const {vendor_bookings_id} = user
 
   let bookings: any[] = []
@@ -25,13 +25,13 @@ export const getVendorBookingsById = (user: User) => {
 }
 
 export const getUserProAccessLeft = (user: User, vendor: Booking) => {
-  if (vendor.max_access == null) {return}
+  if (vendor.booking_settings.max_access == null) {return}
   let bookings_amount : number = 0
   for (let index = 0; index < user.order_histroy.length; index++) {
     if (user.order_histroy[index].vendor_id === vendor.id){
       bookings_amount += 1;
     }
-    console.log("bookings amount ", bookings_amount)
+    // console.log("bookings amount ", bookings_amount)
     
   }
   // const user_vendor_orders = user.order_histroy.map(
@@ -40,6 +40,6 @@ export const getUserProAccessLeft = (user: User, vendor: Booking) => {
   //       return bookings = [...bookings, booking]
   //     }
   // })
-  const access_left =  vendor.max_access - bookings_amount
+  const access_left =  vendor.booking_settings.max_access - bookings_amount
   return access_left < 0 ? 0 : access_left
 };

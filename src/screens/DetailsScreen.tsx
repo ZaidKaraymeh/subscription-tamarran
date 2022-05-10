@@ -73,7 +73,13 @@ const DetailsScreen = ({route, navigation}: any) => {
                     </Text>
                   )} */}
                   <View style={tw`items-center`}>
-                    {vendor.vendor_settings.all_access ?
+                    <Text style={tw`text-lg  text-black text-center`}>
+                      Access Left - {access_left}
+                    </Text>
+                    <Text style={tw`text-lg  text-black text-center`}>
+                      Max Access - {booking.booking_settings.max_access}
+                    </Text>
+                    {/* {vendor.vendor_settings.all_access ?
                         <Fragment>
                           <Text style={tw`text-lg  text-black text-center`}>
                             Access Left - {access_left}
@@ -84,7 +90,7 @@ const DetailsScreen = ({route, navigation}: any) => {
                         </Fragment>
                         :
                         <Fragment></Fragment>
-                    }
+                    } */}
                     <Text style={tw`text-lg text-center pt-4`}>
                       Subscription Active and benefits are applied automatically
                       for online bookings, show this QR Code to vendor for out
