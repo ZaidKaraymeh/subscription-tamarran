@@ -1,6 +1,7 @@
 import { useSelector } from "react-redux";
 import { User, Booking, OrderHistory } from "../types";
-import { bookings, selectUsers } from "./userSlice";
+import { selectBookings } from "./bookingReducer";
+import { selectUsers } from "./userSlice";
 
 export const getUserById = (id: number) => {
   const users = useSelector(selectUsers);
@@ -8,7 +9,8 @@ export const getUserById = (id: number) => {
 };
 
 export const getBookingById = (id: number) => {
-  return bookings.bookings.find((booking) => booking.id === id);
+  const bookings = useSelector(selectBookings)
+  return bookings.find((booking: Booking) => booking.id === id);
 };
 
 export const getVendorBookings = (user: User) => {
@@ -40,6 +42,6 @@ export const getUserProAccessLeft = (user: User, vendor: Booking) => {
   //       return bookings = [...bookings, booking]
   //     }
   // })
-  const access_left =  vendor.booking_settings.max_access - bookings_amount
+  const access_left =  parseInt(vendor.booking_settings.max_access) - bookings_amount
   return access_left < 0 ? 0 : access_left
 };

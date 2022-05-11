@@ -14,11 +14,12 @@ import {SafeAreaView} from 'react-native-safe-area-context';
 import tw from 'twrnc';
 import {useNavigation} from '@react-navigation/native';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
-import {bookings} from '../features/userSlice';
-import {RootStackParamList, User} from '../types'
+import {Booking, RootStackParamList, User} from '../types'
 import { getUserById, getVendorBookings } from '../features/userUtilities';
 
 import { subscribeScreenProp, detailScreenProp, menuScreenProp } from '../types'
+import { useSelector } from 'react-redux';
+import { selectBookings } from '../features/bookingReducer';
 
 type Props = {};
 
@@ -36,6 +37,8 @@ const HomeScreen = ({route, navigation}: any) => {
   if (user_new.user_type == "vendor"){
     vendor_bookings = getVendorBookings(user_new);
   }
+
+  const bookings = useSelector(selectBookings)
 
   // console.log(vendor_bookings)
 
@@ -81,7 +84,7 @@ const HomeScreen = ({route, navigation}: any) => {
 
       <ScrollView style={[tw`flex-1 bg-white`]}>
         {user_new.user_type == 'customer' ? (
-          bookings.bookings.map((booking) => {
+          bookings.map((booking: Booking) => {
             return (
               <TouchableOpacity
                 key={booking.id}

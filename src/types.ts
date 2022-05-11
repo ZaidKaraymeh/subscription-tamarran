@@ -62,6 +62,13 @@ export type salesHistoryScreenProp = NativeStackNavigationProp<
   'SalesHistory'
 >;
 
+export interface BookingsInterface {
+  bookings: Booking[];
+}
+export interface Users {
+  users: User[];
+}
+
 export type QRCodeType = {
   uri: string;
   width: number;
@@ -80,9 +87,19 @@ export type VendorSettingsAction = {
   max_access: string;
   user: User;
 }
+export type VenueSettingsAction = {
+  booking: Booking
+  venue_settings: VenueSettings;
+  user: User;
+}
 export type VendorSettings = {
   is_member: boolean;
   all_access: boolean;
+}
+export type VenueSettings = {
+  is_member: boolean;
+  all_access: boolean;
+  max_access: string;
 }
 export type SubscribeAction = {
   user: User;
@@ -127,10 +144,6 @@ export type Booking = {
   stars: number;
   member_price: number;
   location: string;
-  booking_settings: {
-    max_access: number | null,
-    all_access: boolean;
-
-  }
+  booking_settings: VenueSettings
   timing?: string;
 };

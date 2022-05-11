@@ -14,6 +14,7 @@ const VendorSettings = ({route, navigation}: any) => {
     // const user_new = getUserById(user.id)
     const [settings, setSettings] = useState<VendorSettingsAction>(user.vendor_settings)
     const dispatch = useDispatch()
+    
     const onSubmit = () => {
       dispatch(saveVendorSettings({...settings, user}))
       navigation.navigate("Home", {user: user})
@@ -53,7 +54,7 @@ const VendorSettings = ({route, navigation}: any) => {
             />
           </View>
         </View>
-        <View style={tw`flex-row my-1`}>
+        {/* <View style={tw`flex-row my-1`}>
           <View style={[tw`flex-3 `]}>
             <Text style={tw`text-lg`}>Members Get All Access</Text>
           </View>
@@ -69,12 +70,12 @@ const VendorSettings = ({route, navigation}: any) => {
               value={settings.all_access}
             />
           </View>
-        </View>
-        <View style={tw`flex-row my-1`}>
+        </View> */}
+        {/* <View style={tw`flex-row my-1`}>
           <View style={tw`flex-3 justify-center `}>
             <Text style={tw`text-lg`}>Max Access with Pro Benefits</Text>
           </View>
-          {/* <View style={tw`flex-1 items-start pl-2`}>
+          <View style={tw`flex-1 items-start pl-2`}>
             <TextInput
             style={tw`h-45px text-xl border-b text-center`}
             onChangeText={(ev) => setSettings({...settings, max_access: ev})}
@@ -82,8 +83,8 @@ const VendorSettings = ({route, navigation}: any) => {
             placeholder="Enter username"
             keyboardType="numeric"
             />
-          </View> */}
-        </View>
+          </View>
+        </View> */}
         <View style={tw`my-4`}>
           <Button onPress={onSubmit} title="Save Changes" color="#54BAB9" />
         </View>
