@@ -53,9 +53,9 @@ const DetailsScreen = ({route, navigation}: any) => {
               return '* ';
             })}
           </Text>
-          {vendor.vendor_settings?.is_member ? (
+          {booking.booking_settings.is_member ? (
             <Fragment>
-              {user_new.is_subscribed && access_left != 0 ? (
+              {user_new.is_subscribed ? (
                 <Fragment>
                   <View style={tw`flex-row mt-5`}>
                     <Text style={tw`text-lg flex-1  text-black text-center`}>
@@ -73,12 +73,21 @@ const DetailsScreen = ({route, navigation}: any) => {
                     </Text>
                   )} */}
                   <View style={tw`items-center`}>
-                    <Text style={tw`text-lg  text-black text-center`}>
-                      Access Left - {access_left}
-                    </Text>
-                    <Text style={tw`text-lg  text-black text-center`}>
-                      Max Access - {booking.booking_settings.max_access}
-                    </Text>
+                    {booking.booking_settings.max_access == '-1' ?
+                      <Text style={tw`text-lg  text-black text-center mt-3`}>
+                        Max Access - Unlimited
+                      </Text>
+                      :
+                      <Fragment>
+                        <Text style={tw`text-lg  text-black text-center mt-3`}>
+                          Access Left - {access_left}
+                        </Text>
+                        <Text style={tw`text-lg  text-black text-center`}>
+                          Max Access -{' '}
+                            {booking.booking_settings.max_access}
+                        </Text>
+                      </Fragment>
+                    }
                     {/* {vendor.vendor_settings.all_access ?
                         <Fragment>
                           <Text style={tw`text-lg  text-black text-center`}>
@@ -91,7 +100,7 @@ const DetailsScreen = ({route, navigation}: any) => {
                         :
                         <Fragment></Fragment>
                     } */}
-                    <Text style={tw`text-lg text-center pt-4`}>
+                    <Text style={tw`text-lg text-center pt-4 text-black`}>
                       Subscription Active and benefits are applied automatically
                       for online bookings, show this QR Code to vendor for out
                       of app bookings with subscription benefits.
@@ -118,7 +127,7 @@ const DetailsScreen = ({route, navigation}: any) => {
                     </Text>
                   </View>
                   <Text style={tw`text-lg  text-black text-center`}>
-                    Not Subscribed or no access left
+                    Not Subscribed
                   </Text>
                 </Fragment>
               )}
