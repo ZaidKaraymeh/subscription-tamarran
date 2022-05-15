@@ -55,7 +55,7 @@ const DetailsScreen = ({route, navigation}: any) => {
           </Text>
           {booking.booking_settings.is_member ? (
             <Fragment>
-              {user_new.is_subscribed ? (
+              {user_new.is_subscribed && access_left > 0 ? (
                 <Fragment>
                   <View style={tw`flex-row mt-5`}>
                     <Text style={tw`text-lg flex-1  text-black text-center`}>
@@ -126,9 +126,9 @@ const DetailsScreen = ({route, navigation}: any) => {
                       {booking.timing == 'None' ? '24/7' : booking.timing}
                     </Text>
                   </View>
-                  <Text style={tw`text-lg  text-black text-center`}>
+                  {/* <Text style={tw`text-lg  text-black text-center`}>
                     Not Subscribed
-                  </Text>
+                  </Text> */}
                 </Fragment>
               )}
             </Fragment>
@@ -152,7 +152,7 @@ const DetailsScreen = ({route, navigation}: any) => {
             <TouchableOpacity
               onPress={() => {
                 dispatch(
-                  completeUserBooking({user: user_new, booking: booking}),
+                  completeUserBooking({user: user_new, booking: booking, access_left}),
                 );
                 Alert.alert('Booking Successful!', '', [
                   {

@@ -27,10 +27,10 @@ export const getVendorBookings = (user: User) => {
 }
 
 export const getUserProAccessLeft = (user: User, vendor: Booking) => {
-  if (vendor.booking_settings.max_access == null) {return}
+  if (vendor.booking_settings.max_access == "-1") {return 0}
   let bookings_amount : number = 0
   for (let index = 0; index < user.order_histroy.length; index++) {
-    if (user.order_histroy[index].vendor_id === vendor.id){
+    if (user.order_histroy[index].vendor_id === vendor.id && user.order_histroy[index].is_user_subscribed){
       bookings_amount += 1;
     }
     // console.log("bookings amount ", bookings_amount)

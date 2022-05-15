@@ -141,14 +141,14 @@ export const usersSlice = createSlice({
     // Use the PayloadAction type to declare the contents of `action.payload`
     completeUserBooking: (state, action: PayloadAction<BookingAction>) => {
       // console.log(action.payload)
-      const {user, booking} = action.payload;
+      const {user, booking, access_left} = action.payload;
       const index = state.users.findIndex(x => x.id == user.id)
       const id = Math.floor(Math.random() * 9999999);
       const order: OrderHistory = {
         id: id,
         vendor_id: booking.id,
         vendor_name: booking.vendor_name,
-        price: user.is_subscribed && user.purchases_count <= 4 ? booking.member_price : booking.price,
+        price: user.is_subscribed && access_left > 0 ? booking.member_price : booking.price,
         user_id: user.id,
         is_user_subscribed: user.is_subscribed,
         timing: booking.timing
@@ -169,7 +169,7 @@ export const usersSlice = createSlice({
       const sale : Sales = {
         id: id,
         vendor_name: booking.vendor_name,
-        price: user.is_subscribed && user.purchases_count <= 4 ? booking.member_price : booking.price,
+        price: user.is_subscribed && access_left > 0 ? booking.member_price : booking.price,
         user_id: user.id,
         timing: booking.timing
       }

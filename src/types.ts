@@ -79,6 +79,7 @@ export type QRCodeType = {
 export type BookingAction = {
   booking: Booking;
   user: User;
+  access_left: number;
 };
 
 export type VendorSettingsAction = {

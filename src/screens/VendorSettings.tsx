@@ -34,14 +34,14 @@ const VendorSettings = ({route, navigation}: any) => {
     <View style={[tw`flex-1 bg-white`]}>
       <Header route={route} navigation={navigation} />
       <View style={tw`p-3`}>
-        <View style={tw`flex-row my-1`}>
+        {/* <View style={tw`flex-row my-1`}>
           <View style={tw`flex-3`}>
             <Text style={tw`text-lg`}>Join the Tamarran Pro program</Text>
           </View>
           <View style={tw`flex-1 items-start pl-2 items-center`}>
             <Switch
               trackColor={{false: '#767577', true: '#81b0ff'}}
-              thumbColor={settings?.is_member ? '#f5dd4b' : '#f4f3f4'}
+              thumbColor={settings.is_member ? '#f5dd4b' : '#f4f3f4'}
               ios_backgroundColor="#3e3e3e"
               onValueChange={() =>
                 setSettings({
@@ -53,7 +53,7 @@ const VendorSettings = ({route, navigation}: any) => {
               value={settings.is_member}
             />
           </View>
-        </View>
+        </View> */}
         {/* <View style={tw`flex-row my-1`}>
           <View style={[tw`flex-3 `]}>
             <Text style={tw`text-lg`}>Members Get All Access</Text>
@@ -85,9 +85,9 @@ const VendorSettings = ({route, navigation}: any) => {
             />
           </View>
         </View> */}
-        <View style={tw`my-4`}>
+        {/* <View style={tw`my-4`}>
           <Button onPress={onSubmit} title="Save Changes" color="#54BAB9" />
-        </View>
+        </View> */}
       </View>
       <Text style={tw`text-2xl text-center `} >Edit Venue & Activity Settings</Text>
       <ScrollView style={tw`flex-1`}>
