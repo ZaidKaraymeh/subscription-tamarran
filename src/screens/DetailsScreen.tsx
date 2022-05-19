@@ -20,6 +20,7 @@ const DetailsScreen = ({route, navigation}: any) => {
   const user_new = getUserById(user.id)
   const dispatch = useDispatch()
   const access_left = getUserProAccessLeft(user_new, booking)
+  console.log(access_left)
 
   return (
     <View style={[tw`flex-1 bg-white`]}>
@@ -55,7 +56,7 @@ const DetailsScreen = ({route, navigation}: any) => {
           </Text>
           {booking.booking_settings.is_member ? (
             <Fragment>
-              {user_new.is_subscribed && access_left > 0 ? (
+              {user_new.is_subscribed && (access_left > 0 || access_left == -1 )? (
                 <Fragment>
                   <View style={tw`flex-row mt-5`}>
                     <Text style={tw`text-lg flex-1  text-black text-center`}>

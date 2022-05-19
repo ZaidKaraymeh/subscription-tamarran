@@ -18,7 +18,7 @@ const SettingsScreen = ({route, navigation}: any) => {
           navigateVendorSettings.navigate('VendorSettings', {user: user})
         }>
         <View style={tw`h-50px  text-lg justify-center pl-5`}>
-          <Text style={tw`text-xl font-bold`}>Vendor Subscription</Text>
+          <Text style={tw`text-xl font-bold`}>Vendor Subscription Settings</Text>
         </View>
       </TouchableOpacity>
     </View>
