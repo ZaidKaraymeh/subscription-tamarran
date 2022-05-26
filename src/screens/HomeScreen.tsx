@@ -88,6 +88,7 @@ const HomeScreen = ({route, navigation}: any) => {
             return (
               <TouchableOpacity
                 key={booking.id}
+                activeOpacity={0.4}
                 style={[
                   tw`border-0 mb-3 mx-3 rounded-xl`,
                   {
@@ -112,15 +113,22 @@ const HomeScreen = ({route, navigation}: any) => {
                   style={tw`h-150px p-2 justify-end`}
                   imageStyle={{borderRadius: 10}}></ImageBackground>
                 <View style={tw`p-2`}>
-                  <Text style={tw`text-lg`}>
-                    {booking.vendor_name} - {booking.location}
-                  </Text>
-                  <Text
-                    style={tw`text-2xl font-bold text-yellow-600 p-0 m-0  `}>
-                    {Array.from(Array(booking.stars), (e, i) => {
-                      return '* ';
-                    })}
-                  </Text>
+                  <View style={tw`flex-row items-center`} >
+                    <Text style={tw`text-lg p-1`}>
+                      {booking.vendor_name} - {booking.location}
+                    </Text>
+                    {booking.booking_settings.is_member && 
+                    <Text style={tw`text-sm text-yellow-600 m-0 p-1 border border-yellow-600 ml-3 items-center justify-center text-center  `} >
+                      Pro Offers
+                    </Text>
+                    }
+                  </View>
+                    <Text
+                      style={tw`text-2xl font-bold text-yellow-600 p-1 m-0  `}>
+                      {Array.from(Array(booking.stars), (e, i) => {
+                        return '* ';
+                      })} 
+                    </Text>
                 </View>
               </TouchableOpacity>
             );

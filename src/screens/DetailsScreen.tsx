@@ -6,8 +6,9 @@ import tw from 'twrnc'
 import { getBookingById, getUserById, getUserProAccessLeft } from '../features/userUtilities';
 import QRCode from 'react-native-qrcode-svg';
 
-import {QRCodeType, User} from '../types';
+import {QRCodeType, subscribeScreenProp, User} from '../types';
 import Header from '../components/Header';
+import { useNavigation } from '@react-navigation/native';
 
 
 
@@ -17,16 +18,19 @@ const DetailsScreen = ({route, navigation}: any) => {
   const {booking_id, user} = route.params;
   const booking = getBookingById(booking_id)!;
   const vendor: User = getUserById(booking.vendor_user_id)
-  const user_new = getUserById(user.id)
+  const user_new: User = getUserById(user.id)
   const dispatch = useDispatch()
   const access_left = getUserProAccessLeft(user_new, booking)
+
+  const navigateSubscribeScreen = useNavigation<subscribeScreenProp>()
+
   console.log(access_left)
 
   return (
     <View style={[tw`flex-1 bg-white`]}>
       <Header route={route} navigation={navigation} />
       <ScrollView style={tw``}>
-        <View style={tw`flex-1`}>
+        <View style={tw`flex-1 `}>
           <View style={[tw`h-100 justify-center items-center`]}>
             {/* <View
               style={[
@@ -42,21 +46,42 @@ const DetailsScreen = ({route, navigation}: any) => {
             {/* </View> */}
           </View>
         </View>
-        <View style={[tw`px-5, pt-7`, {borderRadius: 40}]}>
-          <Text style={tw`text-2xl font-bold text-center`}>
-            {booking?.vendor_name}
-          </Text>
-          <Text style={tw`text-xl opacity-60 text-center mt-1 text-black`}>
-            {booking.location}
-          </Text>
+        <View style={[tw`px-5, pt-7 hover:bg-green-400`, {borderRadius: 40}]}>
+          <View style={tw`flex-1 flex-row text-center justify-center`}>
+            <Text style={tw`text-2xl font-bold text-center`}>
+              {booking?.vendor_name}
+            </Text>
+            <Text
+              style={tw`text-xl opacity-60 text-center mt-1 mx-3 text-black`}>
+              {'- '} {booking.location}
+            </Text>
+          </View>
+
           <Text style={tw`text-2xl font-bold text-yellow-600 text-center mt-2`}>
             {Array.from(Array(booking.stars), (e, i) => {
               return '* ';
             })}
           </Text>
+          <View style={tw`justify-center flex-1 items-center flex-row`}>
+            {booking.booking_settings.is_member && (
+              <Text
+                style={tw`text-base text-yellow-600 m-0 p-1  border border-yellow-600 w-90px text-center`}>
+                Pro Offers
+              </Text>
+            )}
+            {!user_new.is_subscribed && booking.booking_settings.is_member &&
+              <TouchableOpacity
+              onPress={() => navigateSubscribeScreen.navigate("Subscribe", {user: user_new}) }
+                style={[tw`p-1.5 ml-2 bg-black`, {borderRadius: 6}]}
+              >
+                <Text style={tw`text-white text-base text-center`} >Subscribe Now</Text>
+              </TouchableOpacity>
+            }
+          </View>
           {booking.booking_settings.is_member ? (
             <Fragment>
-              {user_new.is_subscribed && (access_left > 0 || access_left == -1 )? (
+              {user_new.is_subscribed &&
+              (access_left > 0 || access_left == -1) ? (
                 <Fragment>
                   <View style={tw`flex-row mt-5`}>
                     <Text style={tw`text-lg flex-1  text-black text-center`}>
@@ -74,21 +99,20 @@ const DetailsScreen = ({route, navigation}: any) => {
                     </Text>
                   )} */}
                   <View style={tw`items-center`}>
-                    {booking.booking_settings.max_access == '-1' ?
+                    {booking.booking_settings.max_access == '-1' ? (
                       <Text style={tw`text-lg  text-black text-center mt-3`}>
                         Max Access - Unlimited
                       </Text>
-                      :
+                    ) : (
                       <Fragment>
                         <Text style={tw`text-lg  text-black text-center mt-3`}>
                           Access Left - {access_left}
                         </Text>
                         <Text style={tw`text-lg  text-black text-center`}>
-                          Max Access -{' '}
-                            {booking.booking_settings.max_access}
+                          Max Access - {booking.booking_settings.max_access}
                         </Text>
                       </Fragment>
-                    }
+                    )}
                     {/* {vendor.vendor_settings.all_access ?
                         <Fragment>
                           <Text style={tw`text-lg  text-black text-center`}>
@@ -153,7 +177,11 @@ const DetailsScreen = ({route, navigation}: any) => {
             <TouchableOpacity
               onPress={() => {
                 dispatch(
-                  completeUserBooking({user: user_new, booking: booking, access_left}),
+                  completeUserBooking({
+                    user: user_new,
+                    booking: booking,
+                    access_left,
+                  }),
                 );
                 Alert.alert('Booking Successful!', '', [
                   {

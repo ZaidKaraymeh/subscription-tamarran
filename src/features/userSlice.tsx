@@ -90,8 +90,8 @@ const initialState: Users = {
   users: [
     {
       id: 1,
-      username: 'Zaid Karaymeh',
-      email: 'karaymehzaid@gmail.com',
+      username: 'Luay Osama',
+      email: 'luayosama@gmail.com',
       is_subscribed: false,
       purchases_count: 0,
       order_histroy: [],
